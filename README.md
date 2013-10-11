@@ -1,0 +1,4 @@
+VEIpadShareVideoSDK
+===================
+
+share in ipad
