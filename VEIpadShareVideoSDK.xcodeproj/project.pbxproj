@@ -1,0 +1,714 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		42AB80FD1807C1F9007F3876 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AB80FC1807C1F8007F3876 /* Foundation.framework */; };
+		42AB81021807C1F9007F3876 /* VEIpadShareVideoSDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42AB81011807C1F9007F3876 /* VEIpadShareVideoSDK.h */; };
+		42AB81041807C1F9007F3876 /* VEIpadShareVideoSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB81031807C1F9007F3876 /* VEIpadShareVideoSDK.m */; };
+		42AB810B1807C1F9007F3876 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AB810A1807C1F9007F3876 /* XCTest.framework */; };
+		42AB810C1807C1F9007F3876 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AB80FC1807C1F8007F3876 /* Foundation.framework */; };
+		42AB810E1807C1F9007F3876 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AB810D1807C1F9007F3876 /* UIKit.framework */; };
+		42AB81111807C1F9007F3876 /* libVEIpadShareVideoSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AB80F91807C1F8007F3876 /* libVEIpadShareVideoSDK.a */; };
+		42AB81171807C1F9007F3876 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 42AB81151807C1F9007F3876 /* InfoPlist.strings */; };
+		42AB81191807C1F9007F3876 /* VEIpadShareVideoSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB81181807C1F9007F3876 /* VEIpadShareVideoSDKTests.m */; };
+		42AB814A1807C29A007F3876 /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 42AB812A1807C29A007F3876 /* Base64Transcoder.c */; };
+		42AB814B1807C29A007F3876 /* OAAsynchronousDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB812D1807C29A007F3876 /* OAAsynchronousDataFetcher.m */; };
+		42AB814C1807C29A007F3876 /* OAConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB812F1807C29A007F3876 /* OAConsumer.m */; };
+		42AB814D1807C29A007F3876 /* OADataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB81311807C29A007F3876 /* OADataFetcher.m */; };
+		42AB814E1807C29A007F3876 /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB81331807C29A007F3876 /* OAHMAC_SHA1SignatureProvider.m */; };
+		42AB814F1807C29A007F3876 /* OAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB81351807C29A007F3876 /* OAMutableURLRequest.m */; };
+		42AB81501807C29A007F3876 /* OAPlaintextSignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB81371807C29A007F3876 /* OAPlaintextSignatureProvider.m */; };
+		42AB81511807C29A007F3876 /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB81391807C29A007F3876 /* OARequestParameter.m */; };
+		42AB81521807C29A007F3876 /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB813B1807C29A007F3876 /* OAServiceTicket.m */; };
+		42AB81531807C29A007F3876 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB813F1807C29A007F3876 /* OAToken.m */; };
+		42AB81541807C29A007F3876 /* OAToken_KeychainExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB81411807C29A007F3876 /* OAToken_KeychainExtensions.m */; };
+		42AB81551807C29A007F3876 /* OAuthUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB81451807C29A007F3876 /* OAuthUtils.m */; };
+		42AB81631808101F007F3876 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AB81621808101F007F3876 /* SenTestingKit.framework */; };
+		42AB81641808101F007F3876 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AB80FC1807C1F8007F3876 /* Foundation.framework */; };
+		42AB81651808101F007F3876 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AB810D1807C1F9007F3876 /* UIKit.framework */; };
+		42AB816B1808101F007F3876 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 42AB81691808101F007F3876 /* InfoPlist.strings */; };
+		42AB816D1808101F007F3876 /* VEIpadShareVideoSDKTests_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB816C1808101F007F3876 /* VEIpadShareVideoSDKTests_1.m */; };
+		42AB817A18083E0C007F3876 /* VEIpadShareFlickr.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB817518083E0C007F3876 /* VEIpadShareFlickr.m */; };
+		42AB817B18083E0C007F3876 /* VEIpadShareFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB817718083E0C007F3876 /* VEIpadShareFacebook.m */; };
+		42AB817C18083E0C007F3876 /* VEIpadShareYoutube.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB817918083E0C007F3876 /* VEIpadShareYoutube.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		42AB810F1807C1F9007F3876 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42AB80F11807C1F8007F3876 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42AB80F81807C1F8007F3876;
+			remoteInfo = VEIpadShareVideoSDK;
+		};
+		42AB816F1808101F007F3876 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42AB80F11807C1F8007F3876 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42AB80F81807C1F8007F3876;
+			remoteInfo = VEIpadShareVideoSDK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		42AB80F71807C1F8007F3876 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				42AB81021807C1F9007F3876 /* VEIpadShareVideoSDK.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		42AB80F91807C1F8007F3876 /* libVEIpadShareVideoSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVEIpadShareVideoSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		42AB80FC1807C1F8007F3876 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		42AB81001807C1F9007F3876 /* VEIpadShareVideoSDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VEIpadShareVideoSDK-Prefix.pch"; sourceTree = "<group>"; };
+		42AB81011807C1F9007F3876 /* VEIpadShareVideoSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VEIpadShareVideoSDK.h; sourceTree = "<group>"; };
+		42AB81031807C1F9007F3876 /* VEIpadShareVideoSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VEIpadShareVideoSDK.m; sourceTree = "<group>"; };
+		42AB81091807C1F9007F3876 /* VEIpadShareVideoSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VEIpadShareVideoSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		42AB810A1807C1F9007F3876 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		42AB810D1807C1F9007F3876 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		42AB81141807C1F9007F3876 /* VEIpadShareVideoSDKTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VEIpadShareVideoSDKTests-Info.plist"; sourceTree = "<group>"; };
+		42AB81161807C1F9007F3876 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		42AB81181807C1F9007F3876 /* VEIpadShareVideoSDKTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VEIpadShareVideoSDKTests.m; sourceTree = "<group>"; };
+		42AB812A1807C29A007F3876 /* Base64Transcoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Base64Transcoder.c; sourceTree = "<group>"; };
+		42AB812B1807C29A007F3876 /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
+		42AB812C1807C29A007F3876 /* OAAsynchronousDataFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAAsynchronousDataFetcher.h; sourceTree = "<group>"; };
+		42AB812D1807C29A007F3876 /* OAAsynchronousDataFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAAsynchronousDataFetcher.m; sourceTree = "<group>"; };
+		42AB812E1807C29A007F3876 /* OAConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAConsumer.h; sourceTree = "<group>"; };
+		42AB812F1807C29A007F3876 /* OAConsumer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAConsumer.m; sourceTree = "<group>"; };
+		42AB81301807C29A007F3876 /* OADataFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OADataFetcher.h; sourceTree = "<group>"; };
+		42AB81311807C29A007F3876 /* OADataFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OADataFetcher.m; sourceTree = "<group>"; };
+		42AB81321807C29A007F3876 /* OAHMAC_SHA1SignatureProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAHMAC_SHA1SignatureProvider.h; sourceTree = "<group>"; };
+		42AB81331807C29A007F3876 /* OAHMAC_SHA1SignatureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAHMAC_SHA1SignatureProvider.m; sourceTree = "<group>"; };
+		42AB81341807C29A007F3876 /* OAMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAMutableURLRequest.h; sourceTree = "<group>"; };
+		42AB81351807C29A007F3876 /* OAMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAMutableURLRequest.m; sourceTree = "<group>"; };
+		42AB81361807C29A007F3876 /* OAPlaintextSignatureProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAPlaintextSignatureProvider.h; sourceTree = "<group>"; };
+		42AB81371807C29A007F3876 /* OAPlaintextSignatureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAPlaintextSignatureProvider.m; sourceTree = "<group>"; };
+		42AB81381807C29A007F3876 /* OARequestParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OARequestParameter.h; sourceTree = "<group>"; };
+		42AB81391807C29A007F3876 /* OARequestParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OARequestParameter.m; sourceTree = "<group>"; };
+		42AB813A1807C29A007F3876 /* OAServiceTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAServiceTicket.h; sourceTree = "<group>"; };
+		42AB813B1807C29A007F3876 /* OAServiceTicket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAServiceTicket.m; sourceTree = "<group>"; };
+		42AB813C1807C29A007F3876 /* OASignatureProviding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OASignatureProviding.h; sourceTree = "<group>"; };
+		42AB813D1807C29A007F3876 /* OATestServer.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = OATestServer.rb; sourceTree = "<group>"; };
+		42AB813E1807C29A007F3876 /* OAToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAToken.h; sourceTree = "<group>"; };
+		42AB813F1807C29A007F3876 /* OAToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAToken.m; sourceTree = "<group>"; };
+		42AB81401807C29A007F3876 /* OAToken_KeychainExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAToken_KeychainExtensions.h; sourceTree = "<group>"; };
+		42AB81411807C29A007F3876 /* OAToken_KeychainExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAToken_KeychainExtensions.m; sourceTree = "<group>"; };
+		42AB81421807C29A007F3876 /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
+		42AB81431807C29A007F3876 /* OAuthConsumer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer_Prefix.pch; sourceTree = "<group>"; };
+		42AB81441807C29A007F3876 /* OAuthUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthUtils.h; sourceTree = "<group>"; };
+		42AB81451807C29A007F3876 /* OAuthUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthUtils.m; sourceTree = "<group>"; };
+		42AB81611808101E007F3876 /* VEIpadShareVideoSDKTests_1.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VEIpadShareVideoSDKTests_1.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		42AB81621808101F007F3876 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		42AB81681808101F007F3876 /* VEIpadShareVideoSDKTests_1-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VEIpadShareVideoSDKTests_1-Info.plist"; sourceTree = "<group>"; };
+		42AB816A1808101F007F3876 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		42AB816C1808101F007F3876 /* VEIpadShareVideoSDKTests_1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VEIpadShareVideoSDKTests_1.m; sourceTree = "<group>"; };
+		42AB816E1808101F007F3876 /* VEIpadShareVideoSDKTests_1-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VEIpadShareVideoSDKTests_1-Prefix.pch"; sourceTree = "<group>"; };
+		42AB817418083E0C007F3876 /* VEIpadShareFlickr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VEIpadShareFlickr.h; sourceTree = "<group>"; };
+		42AB817518083E0C007F3876 /* VEIpadShareFlickr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VEIpadShareFlickr.m; sourceTree = "<group>"; };
+		42AB817618083E0C007F3876 /* VEIpadShareFacebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VEIpadShareFacebook.h; sourceTree = "<group>"; };
+		42AB817718083E0C007F3876 /* VEIpadShareFacebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VEIpadShareFacebook.m; sourceTree = "<group>"; };
+		42AB817818083E0C007F3876 /* VEIpadShareYoutube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VEIpadShareYoutube.h; sourceTree = "<group>"; };
+		42AB817918083E0C007F3876 /* VEIpadShareYoutube.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VEIpadShareYoutube.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		42AB80F61807C1F8007F3876 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42AB80FD1807C1F9007F3876 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42AB81061807C1F9007F3876 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42AB810B1807C1F9007F3876 /* XCTest.framework in Frameworks */,
+				42AB810E1807C1F9007F3876 /* UIKit.framework in Frameworks */,
+				42AB810C1807C1F9007F3876 /* Foundation.framework in Frameworks */,
+				42AB81111807C1F9007F3876 /* libVEIpadShareVideoSDK.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42AB815E1808101E007F3876 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42AB81631808101F007F3876 /* SenTestingKit.framework in Frameworks */,
+				42AB81651808101F007F3876 /* UIKit.framework in Frameworks */,
+				42AB81641808101F007F3876 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		42AB80F01807C1F8007F3876 = {
+			isa = PBXGroup;
+			children = (
+				42AB80FE1807C1F9007F3876 /* VEIpadShareVideoSDK */,
+				42AB81121807C1F9007F3876 /* VEIpadShareVideoSDKTests */,
+				42AB81661808101F007F3876 /* VEIpadShareVideoSDKTests_1 */,
+				42AB80FB1807C1F8007F3876 /* Frameworks */,
+				42AB80FA1807C1F8007F3876 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		42AB80FA1807C1F8007F3876 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				42AB80F91807C1F8007F3876 /* libVEIpadShareVideoSDK.a */,
+				42AB81091807C1F9007F3876 /* VEIpadShareVideoSDKTests.xctest */,
+				42AB81611808101E007F3876 /* VEIpadShareVideoSDKTests_1.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		42AB80FB1807C1F8007F3876 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				42AB80FC1807C1F8007F3876 /* Foundation.framework */,
+				42AB810A1807C1F9007F3876 /* XCTest.framework */,
+				42AB810D1807C1F9007F3876 /* UIKit.framework */,
+				42AB81621808101F007F3876 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		42AB80FE1807C1F9007F3876 /* VEIpadShareVideoSDK */ = {
+			isa = PBXGroup;
+			children = (
+				42AB81011807C1F9007F3876 /* VEIpadShareVideoSDK.h */,
+				42AB81031807C1F9007F3876 /* VEIpadShareVideoSDK.m */,
+				42AB817418083E0C007F3876 /* VEIpadShareFlickr.h */,
+				42AB817518083E0C007F3876 /* VEIpadShareFlickr.m */,
+				42AB817618083E0C007F3876 /* VEIpadShareFacebook.h */,
+				42AB817718083E0C007F3876 /* VEIpadShareFacebook.m */,
+				42AB817818083E0C007F3876 /* VEIpadShareYoutube.h */,
+				42AB817918083E0C007F3876 /* VEIpadShareYoutube.m */,
+				42AB81221807C29A007F3876 /* youtube */,
+				42AB81251807C29A007F3876 /* facebook */,
+				42AB81281807C29A007F3876 /* flickr */,
+				42AB80FF1807C1F9007F3876 /* Supporting Files */,
+			);
+			path = VEIpadShareVideoSDK;
+			sourceTree = "<group>";
+		};
+		42AB80FF1807C1F9007F3876 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				42AB81001807C1F9007F3876 /* VEIpadShareVideoSDK-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		42AB81121807C1F9007F3876 /* VEIpadShareVideoSDKTests */ = {
+			isa = PBXGroup;
+			children = (
+				42AB81181807C1F9007F3876 /* VEIpadShareVideoSDKTests.m */,
+				42AB81131807C1F9007F3876 /* Supporting Files */,
+			);
+			path = VEIpadShareVideoSDKTests;
+			sourceTree = "<group>";
+		};
+		42AB81131807C1F9007F3876 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				42AB81141807C1F9007F3876 /* VEIpadShareVideoSDKTests-Info.plist */,
+				42AB81151807C1F9007F3876 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		42AB81221807C29A007F3876 /* youtube */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = youtube;
+			sourceTree = "<group>";
+		};
+		42AB81251807C29A007F3876 /* facebook */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = facebook;
+			sourceTree = "<group>";
+		};
+		42AB81281807C29A007F3876 /* flickr */ = {
+			isa = PBXGroup;
+			children = (
+				42AB81291807C29A007F3876 /* OAuth */,
+			);
+			path = flickr;
+			sourceTree = "<group>";
+		};
+		42AB81291807C29A007F3876 /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				42AB812A1807C29A007F3876 /* Base64Transcoder.c */,
+				42AB812B1807C29A007F3876 /* Base64Transcoder.h */,
+				42AB812C1807C29A007F3876 /* OAAsynchronousDataFetcher.h */,
+				42AB812D1807C29A007F3876 /* OAAsynchronousDataFetcher.m */,
+				42AB812E1807C29A007F3876 /* OAConsumer.h */,
+				42AB812F1807C29A007F3876 /* OAConsumer.m */,
+				42AB81301807C29A007F3876 /* OADataFetcher.h */,
+				42AB81311807C29A007F3876 /* OADataFetcher.m */,
+				42AB81321807C29A007F3876 /* OAHMAC_SHA1SignatureProvider.h */,
+				42AB81331807C29A007F3876 /* OAHMAC_SHA1SignatureProvider.m */,
+				42AB81341807C29A007F3876 /* OAMutableURLRequest.h */,
+				42AB81351807C29A007F3876 /* OAMutableURLRequest.m */,
+				42AB81361807C29A007F3876 /* OAPlaintextSignatureProvider.h */,
+				42AB81371807C29A007F3876 /* OAPlaintextSignatureProvider.m */,
+				42AB81381807C29A007F3876 /* OARequestParameter.h */,
+				42AB81391807C29A007F3876 /* OARequestParameter.m */,
+				42AB813A1807C29A007F3876 /* OAServiceTicket.h */,
+				42AB813B1807C29A007F3876 /* OAServiceTicket.m */,
+				42AB813C1807C29A007F3876 /* OASignatureProviding.h */,
+				42AB813D1807C29A007F3876 /* OATestServer.rb */,
+				42AB813E1807C29A007F3876 /* OAToken.h */,
+				42AB813F1807C29A007F3876 /* OAToken.m */,
+				42AB81401807C29A007F3876 /* OAToken_KeychainExtensions.h */,
+				42AB81411807C29A007F3876 /* OAToken_KeychainExtensions.m */,
+				42AB81421807C29A007F3876 /* OAuthConsumer.h */,
+				42AB81431807C29A007F3876 /* OAuthConsumer_Prefix.pch */,
+				42AB81441807C29A007F3876 /* OAuthUtils.h */,
+				42AB81451807C29A007F3876 /* OAuthUtils.m */,
+			);
+			path = OAuth;
+			sourceTree = "<group>";
+		};
+		42AB81661808101F007F3876 /* VEIpadShareVideoSDKTests_1 */ = {
+			isa = PBXGroup;
+			children = (
+				42AB816C1808101F007F3876 /* VEIpadShareVideoSDKTests_1.m */,
+				42AB81671808101F007F3876 /* Supporting Files */,
+			);
+			path = VEIpadShareVideoSDKTests_1;
+			sourceTree = "<group>";
+		};
+		42AB81671808101F007F3876 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				42AB81681808101F007F3876 /* VEIpadShareVideoSDKTests_1-Info.plist */,
+				42AB81691808101F007F3876 /* InfoPlist.strings */,
+				42AB816E1808101F007F3876 /* VEIpadShareVideoSDKTests_1-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		42AB80F81807C1F8007F3876 /* VEIpadShareVideoSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42AB811C1807C1F9007F3876 /* Build configuration list for PBXNativeTarget "VEIpadShareVideoSDK" */;
+			buildPhases = (
+				42AB80F51807C1F8007F3876 /* Sources */,
+				42AB80F61807C1F8007F3876 /* Frameworks */,
+				42AB80F71807C1F8007F3876 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VEIpadShareVideoSDK;
+			productName = VEIpadShareVideoSDK;
+			productReference = 42AB80F91807C1F8007F3876 /* libVEIpadShareVideoSDK.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		42AB81081807C1F9007F3876 /* VEIpadShareVideoSDKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42AB811F1807C1F9007F3876 /* Build configuration list for PBXNativeTarget "VEIpadShareVideoSDKTests" */;
+			buildPhases = (
+				42AB81051807C1F9007F3876 /* Sources */,
+				42AB81061807C1F9007F3876 /* Frameworks */,
+				42AB81071807C1F9007F3876 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				42AB81101807C1F9007F3876 /* PBXTargetDependency */,
+			);
+			name = VEIpadShareVideoSDKTests;
+			productName = VEIpadShareVideoSDKTests;
+			productReference = 42AB81091807C1F9007F3876 /* VEIpadShareVideoSDKTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		42AB81601808101E007F3876 /* VEIpadShareVideoSDKTests_1 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42AB81711808101F007F3876 /* Build configuration list for PBXNativeTarget "VEIpadShareVideoSDKTests_1" */;
+			buildPhases = (
+				42AB815D1808101E007F3876 /* Sources */,
+				42AB815E1808101E007F3876 /* Frameworks */,
+				42AB815F1808101E007F3876 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				42AB81701808101F007F3876 /* PBXTargetDependency */,
+			);
+			name = VEIpadShareVideoSDKTests_1;
+			productName = VEIpadShareVideoSDKTests_1;
+			productReference = 42AB81611808101E007F3876 /* VEIpadShareVideoSDKTests_1.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		42AB80F11807C1F8007F3876 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = Sachsen;
+				TargetAttributes = {
+					42AB81601808101E007F3876 = {
+						TestTargetID = 42AB80F81807C1F8007F3876;
+					};
+				};
+			};
+			buildConfigurationList = 42AB80F41807C1F8007F3876 /* Build configuration list for PBXProject "VEIpadShareVideoSDK" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 42AB80F01807C1F8007F3876;
+			productRefGroup = 42AB80FA1807C1F8007F3876 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				42AB80F81807C1F8007F3876 /* VEIpadShareVideoSDK */,
+				42AB81081807C1F9007F3876 /* VEIpadShareVideoSDKTests */,
+				42AB81601808101E007F3876 /* VEIpadShareVideoSDKTests_1 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		42AB81071807C1F9007F3876 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42AB81171807C1F9007F3876 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42AB815F1808101E007F3876 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42AB816B1808101F007F3876 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		42AB80F51807C1F8007F3876 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42AB814F1807C29A007F3876 /* OAMutableURLRequest.m in Sources */,
+				42AB814A1807C29A007F3876 /* Base64Transcoder.c in Sources */,
+				42AB81501807C29A007F3876 /* OAPlaintextSignatureProvider.m in Sources */,
+				42AB817A18083E0C007F3876 /* VEIpadShareFlickr.m in Sources */,
+				42AB814B1807C29A007F3876 /* OAAsynchronousDataFetcher.m in Sources */,
+				42AB81541807C29A007F3876 /* OAToken_KeychainExtensions.m in Sources */,
+				42AB81531807C29A007F3876 /* OAToken.m in Sources */,
+				42AB814E1807C29A007F3876 /* OAHMAC_SHA1SignatureProvider.m in Sources */,
+				42AB817C18083E0C007F3876 /* VEIpadShareYoutube.m in Sources */,
+				42AB81551807C29A007F3876 /* OAuthUtils.m in Sources */,
+				42AB817B18083E0C007F3876 /* VEIpadShareFacebook.m in Sources */,
+				42AB814D1807C29A007F3876 /* OADataFetcher.m in Sources */,
+				42AB81511807C29A007F3876 /* OARequestParameter.m in Sources */,
+				42AB814C1807C29A007F3876 /* OAConsumer.m in Sources */,
+				42AB81521807C29A007F3876 /* OAServiceTicket.m in Sources */,
+				42AB81041807C1F9007F3876 /* VEIpadShareVideoSDK.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42AB81051807C1F9007F3876 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42AB81191807C1F9007F3876 /* VEIpadShareVideoSDKTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42AB815D1808101E007F3876 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42AB816D1808101F007F3876 /* VEIpadShareVideoSDKTests_1.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		42AB81101807C1F9007F3876 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42AB80F81807C1F8007F3876 /* VEIpadShareVideoSDK */;
+			targetProxy = 42AB810F1807C1F9007F3876 /* PBXContainerItemProxy */;
+		};
+		42AB81701808101F007F3876 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42AB80F81807C1F8007F3876 /* VEIpadShareVideoSDK */;
+			targetProxy = 42AB816F1808101F007F3876 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		42AB81151807C1F9007F3876 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42AB81161807C1F9007F3876 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		42AB81691808101F007F3876 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42AB816A1808101F007F3876 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		42AB811A1807C1F9007F3876 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: CHEN CHENG (G4QGM9JRYQ)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "407D8F1F-6B0D-4855-B176-EC828E7404ED";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		42AB811B1807C1F9007F3876 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: CHEN CHENG (G4QGM9JRYQ)";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PROVISIONING_PROFILE = "407D8F1F-6B0D-4855-B176-EC828E7404ED";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		42AB811D1807C1F9007F3876 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_RESOURCE_RULES_PATH[sdk=*]" = "";
+				DSTROOT = /tmp/VEIpadShareVideoSDK.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VEIpadShareVideoSDK/VEIpadShareVideoSDK-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		42AB811E1807C1F9007F3876 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/VEIpadShareVideoSDK.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VEIpadShareVideoSDK/VEIpadShareVideoSDK-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		42AB81201807C1F9007F3876 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VEIpadShareVideoSDK/VEIpadShareVideoSDK-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "VEIpadShareVideoSDKTests/VEIpadShareVideoSDKTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		42AB81211807C1F9007F3876 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VEIpadShareVideoSDK/VEIpadShareVideoSDK-Prefix.pch";
+				INFOPLIST_FILE = "VEIpadShareVideoSDKTests/VEIpadShareVideoSDKTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		42AB81721808101F007F3876 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VEIpadShareVideoSDKTests_1/VEIpadShareVideoSDKTests_1-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "VEIpadShareVideoSDKTests_1/VEIpadShareVideoSDKTests_1-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		42AB81731808101F007F3876 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VEIpadShareVideoSDKTests_1/VEIpadShareVideoSDKTests_1-Prefix.pch";
+				INFOPLIST_FILE = "VEIpadShareVideoSDKTests_1/VEIpadShareVideoSDKTests_1-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		42AB80F41807C1F8007F3876 /* Build configuration list for PBXProject "VEIpadShareVideoSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42AB811A1807C1F9007F3876 /* Debug */,
+				42AB811B1807C1F9007F3876 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42AB811C1807C1F9007F3876 /* Build configuration list for PBXNativeTarget "VEIpadShareVideoSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42AB811D1807C1F9007F3876 /* Debug */,
+				42AB811E1807C1F9007F3876 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42AB811F1807C1F9007F3876 /* Build configuration list for PBXNativeTarget "VEIpadShareVideoSDKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42AB81201807C1F9007F3876 /* Debug */,
+				42AB81211807C1F9007F3876 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42AB81711808101F007F3876 /* Build configuration list for PBXNativeTarget "VEIpadShareVideoSDKTests_1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42AB81721808101F007F3876 /* Debug */,
+				42AB81731808101F007F3876 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 42AB80F11807C1F8007F3876 /* Project object */;
+}
