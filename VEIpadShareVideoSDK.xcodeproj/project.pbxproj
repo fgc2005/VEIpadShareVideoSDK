@@ -198,8 +198,6 @@
 				42AB817718083E0C007F3876 /* VEIpadShareFacebook.m */,
 				42AB817818083E0C007F3876 /* VEIpadShareYoutube.h */,
 				42AB817918083E0C007F3876 /* VEIpadShareYoutube.m */,
-				42AB81221807C29A007F3876 /* youtube */,
-				42AB81251807C29A007F3876 /* facebook */,
 				42AB81281807C29A007F3876 /* flickr */,
 				42AB80FF1807C1F9007F3876 /* Supporting Files */,
 			);
@@ -230,20 +228,6 @@
 				42AB81151807C1F9007F3876 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		42AB81221807C29A007F3876 /* youtube */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = youtube;
-			sourceTree = "<group>";
-		};
-		42AB81251807C29A007F3876 /* facebook */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = facebook;
 			sourceTree = "<group>";
 		};
 		42AB81281807C29A007F3876 /* flickr */ = {
@@ -707,6 +691,7 @@
 				42AB81731808101F007F3876 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
