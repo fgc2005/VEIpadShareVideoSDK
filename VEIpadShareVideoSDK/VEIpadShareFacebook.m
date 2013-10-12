@@ -36,11 +36,11 @@
     
     if (self)
     {
-//        NSAssert(!delegate || !appID || !appSecret, @"init nil");
+        //        NSAssert(!delegate || !appID || !appSecret, @"init nil");
         
         _observers = array;
         
-//        self.delegate = delegate;
+        //        self.delegate = delegate;
         self.appID = appID;
         _appSecret = appSecret;
         
@@ -69,7 +69,7 @@
 
 - (void)checkFacebookInternet;
 {
-//    isSyn = YES;
+    //    isSyn = YES;
     
  	NSURL *testURL = [NSURL URLWithString:@"https://graph.facebook.com/1553396397"];
     NSURLRequest *request = [NSURLRequest requestWithURL:testURL
@@ -77,13 +77,13 @@
                                          timeoutInterval:5.0f];
     
     void(^handleCheckFacebookInternetResponse)() = ^(NSData *inputData, NSError *inputError) {
-    
+        
         if (!inputData || inputError)
         {
-//            if (self.delegate && [self.delegate respondsToSelector:@selector(facebookNetworkIsCorrect:)])
-//            {
-//                [self.delegate facebookNetworkIsCorrect:NO];
-//            }
+            //            if (self.delegate && [self.delegate respondsToSelector:@selector(facebookNetworkIsCorrect:)])
+            //            {
+            //                [self.delegate facebookNetworkIsCorrect:NO];
+            //            }
             
             for (id<VEIpadShareFacebookDelegate> observer in _observers)
             {
@@ -95,10 +95,10 @@
         }
         else
         {
-//            if (self.delegate && [self.delegate respondsToSelector:@selector(facebookNetworkIsCorrect:)])
-//            {
-//                [self.delegate facebookNetworkIsCorrect:YES];
-//            }
+            //            if (self.delegate && [self.delegate respondsToSelector:@selector(facebookNetworkIsCorrect:)])
+            //            {
+            //                [self.delegate facebookNetworkIsCorrect:YES];
+            //            }
             
             for (id<VEIpadShareFacebookDelegate> observer in _observers)
             {
@@ -133,7 +133,7 @@
         NSURLRequest *request = [NSURLRequest requestWithURL:nameURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5.0f];
         
         void(^handleCheckFacebookIsStoreTokenValidResponse)() = ^(NSData *inputData, NSError *inputError) {
-        
+            
             BOOL isValid = YES;
             
             if (inputData)
@@ -146,15 +146,15 @@
                 {
                     [[NSUserDefaults standardUserDefaults] removeObjectForKey:KEY_TOKEN_FACEBOOK];
                     [[NSUserDefaults standardUserDefaults] removeObjectForKey:KEY_LOGIN_DATE_FOR_EXPIRATION_FACEBOOK];
-
+                    
                     isValid = NO;
                 }
             }
             
-//            if (self.delegate && [self.delegate respondsToSelector:@selector(facebookIsStoreTokenValid:)])
-//            {
-//                [self.delegate facebookIsStoreTokenValid:isValid];
-//            }
+            //            if (self.delegate && [self.delegate respondsToSelector:@selector(facebookIsStoreTokenValid:)])
+            //            {
+            //                [self.delegate facebookIsStoreTokenValid:isValid];
+            //            }
             
             for (id<VEIpadShareFacebookDelegate> observer in _observers)
             {
@@ -177,14 +177,14 @@
                 handleCheckFacebookIsStoreTokenValidResponse(data, nil);
             }];
         }
-
+        
         return;
     }
-
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(facebookIsStoreTokenValid:)])
-//    {
-//        [self.delegate facebookIsStoreTokenValid:NO];
-//    }
+    
+    //    if (self.delegate && [self.delegate respondsToSelector:@selector(facebookIsStoreTokenValid:)])
+    //    {
+    //        [self.delegate facebookIsStoreTokenValid:NO];
+    //    }
     
     for (id<VEIpadShareFacebookDelegate> observer in _observers)
     {
@@ -198,7 +198,7 @@
 - (void)facebookLogin:(NSString *)token expirationDate:(NSDate *)expDate
 {
     NSString *loginToken = token;
-
+    
 	//retrieve name for current user
 	NSURL *nameURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/me?access_token=%@", token]];
     NSURLRequest *request = [NSURLRequest requestWithURL:nameURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5.0];
@@ -236,10 +236,10 @@
             [[NSUserDefaults standardUserDefaults] setObject:token forKey:KEY_TOKEN_FACEBOOK];
             [[NSUserDefaults standardUserDefaults] setObject:expDate forKey:KEY_LOGIN_DATE_FOR_EXPIRATION_FACEBOOK];
             
-//            if (self.delegate && [self.delegate respondsToSelector:@selector(facebookAuthenticateIsSuccess:withFailType:)])
-//            {
-//                [self.delegate facebookAuthenticateIsSuccess:YES withFailType:FacebookAuthenticateFailType_NoFail];
-//            }
+            //            if (self.delegate && [self.delegate respondsToSelector:@selector(facebookAuthenticateIsSuccess:withFailType:)])
+            //            {
+            //                [self.delegate facebookAuthenticateIsSuccess:YES withFailType:FacebookAuthenticateFailType_NoFail];
+            //            }
             
             for (id<VEIpadShareFacebookDelegate> observer in _observers)
             {
@@ -252,10 +252,10 @@
             return;
         }
         
-//        if (self.delegate && [self.delegate respondsToSelector:@selector(facebookAuthenticateIsSuccess:withFailType:)])
-//        {
-//            [self.delegate facebookAuthenticateIsSuccess:NO withFailType:FacebookAuthenticateFailType_TokenLoginFail];
-//        }
+        //        if (self.delegate && [self.delegate respondsToSelector:@selector(facebookAuthenticateIsSuccess:withFailType:)])
+        //        {
+        //            [self.delegate facebookAuthenticateIsSuccess:NO withFailType:FacebookAuthenticateFailType_TokenLoginFail];
+        //        }
         
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
@@ -281,41 +281,41 @@
 }
 
 - (void)uploadFacebookVideoAtURL:(NSURL *)videoURL
-					title:(NSString *)title
-			  description:(NSString *)description
-				isPrivate:(BOOL)isPrivate
+                           title:(NSString *)title
+                     description:(NSString *)description
+                       isPrivate:(BOOL)isPrivate
 {
-//	if (videoURL == nil || !TOKEN || ![[NSFileManager defaultManager] fileExistsAtPath:[videoURL path]] || _uploader)
-//	{
-//		double delayInSeconds = 1.0;
-//		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-//		dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-//            
-////            [self.delegate uploadFinishedWithFacebookVideoURL:NO returnURL:nil returnMessage:@"video url nil "];
-//            
-//            if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
-//            {
-//                [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:@""];
-//            }
-//		});
-//		return;
-//	}
-//	
-//	if (title == nil || [title isEqual: @""]){
-//        [_facebookDelegate uploadFinishedWithFacebookVideoURL:NO returnURL:nil returnMessage:@"title nil "];
-//        return;
-//    }
-//	if (description == nil || [description isEqual:@""]){
-//        [_facebookDelegate uploadFinishedWithFacebookVideoURL:NO returnURL:nil returnMessage:@"description nil "];
-//        return;
-//    }
+    //	if (videoURL == nil || !TOKEN || ![[NSFileManager defaultManager] fileExistsAtPath:[videoURL path]] || _uploader)
+    //	{
+    //		double delayInSeconds = 1.0;
+    //		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    //		dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    //
+    ////            [self.delegate uploadFinishedWithFacebookVideoURL:NO returnURL:nil returnMessage:@"video url nil "];
+    //
+    //            if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+    //            {
+    //                [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:@""];
+    //            }
+    //		});
+    //		return;
+    //	}
+    //
+    //	if (title == nil || [title isEqual: @""]){
+    //        [_facebookDelegate uploadFinishedWithFacebookVideoURL:NO returnURL:nil returnMessage:@"title nil "];
+    //        return;
+    //    }
+    //	if (description == nil || [description isEqual:@""]){
+    //        [_facebookDelegate uploadFinishedWithFacebookVideoURL:NO returnURL:nil returnMessage:@"description nil "];
+    //        return;
+    //    }
     
     if (!videoURL)
     {
-//        if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
-//        {
-//            [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_UrlNull];
-//        }
+        //        if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+        //        {
+        //            [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_UrlNull];
+        //        }
         
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
@@ -330,10 +330,10 @@
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:[videoURL path]])
     {
-//        if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
-//        {
-//            [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_FileNotFound];
-//        }
+        //        if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+        //        {
+        //            [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_FileNotFound];
+        //        }
         
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
@@ -345,13 +345,13 @@
         
         return;
     }
-
+    
     if (_uploader)
     {
-//        if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
-//        {
-//            [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_Uploading];
-//        }
+        //        if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+        //        {
+        //            [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_Uploading];
+        //        }
         
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
@@ -366,10 +366,10 @@
     
     if (0 == [[title stringByReplacingOccurrencesOfString:@" " withString:@""]length])
     {
-//        if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
-//        {
-//            [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_TitleNull];
-//        }
+        //        if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+        //        {
+        //            [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_TitleNull];
+        //        }
         
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
@@ -384,10 +384,10 @@
     
     if (0 == [[description stringByReplacingOccurrencesOfString:@" " withString:@""]length])
     {
-//        if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
-//        {
-//            [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_DescriptionNull];
-//        }
+        //        if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+        //        {
+        //            [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_DescriptionNull];
+        //        }
         
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
@@ -426,12 +426,12 @@
     
 	if (actualWrittenLength != writeLength)
     {
-//        [_facebookDelegate uploadFinishedWithFacebookVideoURL:NO returnURL:nil returnMessage:@"error writing beginning"];
+        //        [_facebookDelegate uploadFinishedWithFacebookVideoURL:NO returnURL:nil returnMessage:@"error writing beginning"];
         
-//        if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
-//        {
-//            [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_DescriptionNull];
-//        }
+        //        if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+        //        {
+        //            [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_DescriptionNull];
+        //        }
         
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
@@ -449,6 +449,7 @@
 	uint8_t *buffer = (uint8_t *)calloc(1, bufferSize);
 	NSInputStream *iStr = [NSInputStream inputStreamWithURL:videoURL];
 	[iStr open];
+    
 	while ([iStr hasBytesAvailable])
 	{
 		if (!(readSize = [iStr read:buffer maxLength:bufferSize]))
@@ -459,12 +460,11 @@
         
 		if (actualWrittenLength != readSize)
         {
-//            [_facebookDelegate uploadFinishedWithFacebookVideoURL:NO returnURL:nil returnMessage:@"error reading the file data and writing it to new one"];
-            
-//            if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
-//            {
-//                [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_ErrorReading];
-//            }
+            //            [_facebookDelegate uploadFinishedWithFacebookVideoURL:NO returnURL:nil returnMessage:@"error reading the file data and writing it to new one"];
+            //            if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+            //            {
+            //                [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_ErrorReading];
+            //            }
             
             for (id<VEIpadShareFacebookDelegate> observer in _observers)
             {
@@ -492,12 +492,12 @@
     
 	if (actualWrittenLength != writeLength)
     {
-//        [_facebookDelegate uploadFinishedWithFacebookVideoURL:NO returnURL:nil returnMessage:@"error writing ending of file"];
+        //        [_facebookDelegate uploadFinishedWithFacebookVideoURL:NO returnURL:nil returnMessage:@"error writing ending of file"];
         
-//        if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
-//        {
-//            [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_ErrorWriting];
-//        }
+        //        if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+        //        {
+        //            [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_ErrorWriting];
+        //        }
         
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
@@ -539,14 +539,14 @@
     {
         _receivedData = [[NSMutableData alloc]init];
     }
-		
+    
 	[_receivedData appendData:data];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	NSString *retStr = [[NSString alloc]initWithData:_receivedData encoding:NSUTF8StringEncoding];
-
+    
     [_receivedData release];
 	_receivedData = nil;
     
@@ -556,7 +556,7 @@
     {
         idRange = [retStr rangeOfString:@"{\"id\": \""];
     }
-		
+    
 	if (idRange.location == NSNotFound)
     {
         _uploadedObjectID = nil;
@@ -577,12 +577,12 @@
 	
 	if (!_uploadedObjectID)
 	{
-//        [_facebookDelegate uploadFinishedWithFacebookVideoURL:NO returnURL:nil returnMessage:@"No Video URL on the server"];
+        //        [_facebookDelegate uploadFinishedWithFacebookVideoURL:NO returnURL:nil returnMessage:@"No Video URL on the server"];
         
-//        if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
-//        {
-//            [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_ErrorWriting];
-//        }
+        //        if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+        //        {
+        //            [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_ErrorWriting];
+        //        }
         
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
@@ -600,12 +600,12 @@
 		NSString *urlStr = [NSString stringWithFormat:@"https://www.facebook.com/video/video.php?v=%@", _uploadedObjectID];
 		NSURL *url = [NSURL URLWithString:urlStr];
         
-//        [_facebookDelegate uploadFinishedWithFacebookVideoURL:YES returnURL:url returnMessage:@"success"];
+        //        [_facebookDelegate uploadFinishedWithFacebookVideoURL:YES returnURL:url returnMessage:@"success"];
         
-//        if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
-//        {
-//            [self.delegate facebookUploadFinish:YES returnURL:url returnMessage:FacebookUploadFailType_NoFail];
-//        }
+        //        if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+        //        {
+        //            [self.delegate facebookUploadFinish:YES returnURL:url returnMessage:FacebookUploadFailType_NoFail];
+        //        }
         
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
@@ -621,14 +621,14 @@
 
 - (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 {
-//    [_facebookDelegate uploadUpdatedWithBytes:totalBytesWritten ofTotalBytes:totalBytesExpectedToWrite];
+    //    [_facebookDelegate uploadUpdatedWithBytes:totalBytesWritten ofTotalBytes:totalBytesExpectedToWrite];
     
-//    - (void)facebookUploadUpdatedWithBytes:(long)totalBytesWritten ofTotalBytes:(long)totalBytesExpectedToWrite
+    //    - (void)facebookUploadUpdatedWithBytes:(long)totalBytesWritten ofTotalBytes:(long)totalBytesExpectedToWrite
     
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadUpdatedWithBytes:ofTotalBytes:)])
-//    {
-//        [self.delegate facebookUploadUpdatedWithBytes:totalBytesWritten ofTotalBytes:totalBytesExpectedToWrite];
-//    }
+    //    if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadUpdatedWithBytes:ofTotalBytes:)])
+    //    {
+    //        [self.delegate facebookUploadUpdatedWithBytes:totalBytesWritten ofTotalBytes:totalBytesExpectedToWrite];
+    //    }
     
     for (id<VEIpadShareFacebookDelegate> observer in _observers)
     {
@@ -641,12 +641,12 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-//    [_facebookDelegate uploadFinishedWithFacebookVideoURL:NO returnURL:nil returnMessage:error.localizedDescription];
+    //    [_facebookDelegate uploadFinishedWithFacebookVideoURL:NO returnURL:nil returnMessage:error.localizedDescription];
     
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
-//    {
-//        [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_NetworkError];
-//    }
+    //    if (self.delegate && [self.delegate respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+    //    {
+    //        [self.delegate facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_NetworkError];
+    //    }
     
     for (id<VEIpadShareFacebookDelegate> observer in _observers)
     {

@@ -12,28 +12,42 @@ typedef enum
 {
     DidGetLoginTokenFailType_NoFail,
     DidGetLoginTokenFailType_NoResponse,
+    DidGetLoginTokenFailType_ResponseDataError,
 }
 DidGetLoginTokenFailType;
 
 typedef enum
 {
     FlickrAuthenticateFailType_NoFail,
-    FlickrAuthenticateFailType_NoTokenReturn,
+    FlickrAuthenticateFailType_NoOauthTokenReturn,
+    FlickrAuthenticateFailType_NoVerifierReturn
 }
 FlickrAuthenticateFailType;
 
 typedef enum
 {
     FlickrAccessTokenFailType_NoFail,
-    FlickrAccessTokenFailType_Fail,
+    FlickrAccessTokenFailType_NullInputToken,
+    FlickrAccessTokenFailType_NoResponse,
+    FlickrAccessTokenFailType_ResponseDataError,
+    FlickrAccessTokenFailType_NullToken,
+    FlickrAccessTokenFailType_ResponseCodeError
 }
 FlickrAccessTokenFailType;
 
 typedef enum
 {
     FlickrUploadFailType_NoFail,
-    FlickrUploadFailType_Fail,
+    FlickrUploadFailType_NullInput,
     FlickrUploadFailType_LongTime,
+    FlickrUploadFailType_NoPhotoID,
+    FlickrUploadFailType_ResponseNull,
+    FlickrUploadFailType_ResponseHasErrorInfo,
+    FlickrUploadFailType_FailedIs1Info,
+    FlickrUploadFailType_NetwordFail,
+    FlickrUploadFailType_ResponseHasErrorInfoInCheckIsfinish,
+    FlickrUploadFailType_NOFoundPhotoIDInCheckIsfinish,
+    
 }
 FlickrUploadFailType;
 

@@ -311,26 +311,21 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
     [self _canUploadVideosKeyInvalidCheck:nil withUsername:nil];
 }
 
-- (void)_canUploadVideosKeyInvalidCheck:(OAToken *)inputToken withUsername:(NSString *)username // :(BOOL *)keyInvalid errorConnecting:(BOOL *)errorConnecting
+- (void)_canUploadVideosKeyInvalidCheck:(OAToken *)forCheckToken withUsername:(NSString *)username // :(BOOL *)keyInvalid errorConnecting:(BOOL *)errorConnecting
 {
     OAToken *authToken = nil;
     
-    if (!inputToken)
+    if (!forCheckToken)
     {
         authToken = [[[OAToken alloc]initWithUserDefaultsUsingServiceProviderName:@"essflickr" prefix:@"essflickrvideoupload"]autorelease];
     }
     else
     {
-        authToken = [[inputToken retain]autorelease];
+        authToken = [[forCheckToken retain]autorelease];
     }
 
 	if (!authToken)
     {
-//        if (self.delegate && [self.delegate respondsToSelector:@selector(flickrIsStoreTokenValid:)])
-//        {
-//            [self.delegate flickrIsStoreTokenValid:NO];
-//        }
-        
         for (id<VEIpadShareFlickrDelegate> observer in _observers)
         {
             if (observer && [observer respondsToSelector:@selector(flickrIsStoreTokenValid:)])
@@ -365,13 +360,8 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
 
         if (!inputData || inputError)
         {
-            if (!inputToken)
+            if (!forCheckToken)
             {
-//                if (self.delegate && [self.delegate respondsToSelector:@selector(flickrIsStoreTokenValid:)])
-//                {
-//                    [self.delegate flickrIsStoreTokenValid:NO];
-//                }
-                
                 for (id<VEIpadShareFlickrDelegate> observer in _observers)
                 {
                     if (observer && [observer respondsToSelector:@selector(flickrIsStoreTokenValid:)])
@@ -392,13 +382,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
         if (videosRange.location == NSNotFound)
         {
             checkIsTokenValid = NO;
-            
-//            if (self.delegate && [self.delegate respondsToSelector:@selector(flickrIsStoreTokenValid:)])
-//            {
-//                [self.delegate flickrIsStoreTokenValid:NO];
-//            }
-//            
-//            return;
+
         }
         
         str = [str substringFromIndex:videosRange.location+videosRange.length];
@@ -407,13 +391,6 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
         if (remainingRange.location == NSNotFound)
         {
             checkIsTokenValid = NO;
-            
-//            if (self.delegate && [self.delegate respondsToSelector:@selector(flickrIsStoreTokenValid:)])
-//            {
-//                [self.delegate flickrIsStoreTokenValid:NO];
-//            }
-//            
-//            return;
         }
 
         str = [str substringFromIndex:remainingRange.location+remainingRange.length];
@@ -426,22 +403,10 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
             BOOL isValid = (amount > 0);
             
             checkIsTokenValid = isValid;
-            
-//            if (self.delegate && [self.delegate respondsToSelector:@selector(flickrIsStoreTokenValid:)])
-//            {
-//                [self.delegate flickrIsStoreTokenValid:isValid];
-//            }
-//            
-//            return;
         }
         
-        if (!inputData)
+        if (!forCheckToken)
         {
-//            if (self.delegate && [self.delegate respondsToSelector:@selector(flickrIsStoreTokenValid:)])
-//            {
-//                [self.delegate flickrIsStoreTokenValid:checkIsTokenValid];
-//            }
-            
             for (id<VEIpadShareFlickrDelegate> observer in _observers)
             {
                 if (observer && [observer respondsToSelector:@selector(flickrIsStoreTokenValid:)])
@@ -452,18 +417,6 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
         }
         else
         {
-//            if (self.delegate && [self.delegate respondsToSelector:@selector(flickrIsAccessTokenSuccess:withUsername:withFailType:)])
-//            {
-//                if (checkIsTokenValid)
-//                {
-//                    [self.delegate flickrIsAccessTokenSuccess:YES withUsername:username withFailType:FlickrAccessTokenFailType_NoFail];
-//                }
-//                else
-//                {
-//                    [self.delegate flickrIsAccessTokenSuccess:NO withUsername:nil withFailType:FlickrAccessTokenFailType_Fail];
-//                }
-//            }
-            
             for (id<VEIpadShareFlickrDelegate> observer in _observers)
             {
                 if (observer && [observer respondsToSelector:@selector(flickrIsAccessTokenSuccess:withUsername:withFailType:)])
@@ -474,7 +427,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
                     }
                     else
                     {
-                        [observer flickrIsAccessTokenSuccess:NO withUsername:nil withFailType:FlickrAccessTokenFailType_Fail];
+                        [observer flickrIsAccessTokenSuccess:NO withUsername:nil withFailType:FlickrAccessTokenFailType_NullToken];
                     }
                 }
             }
@@ -525,13 +478,6 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
     
         if (!inputData || inputError)
         {
-//            [_flickrDelegate flickrShowMessage:err.localizedDescription];
-            
-//            if (self.delegate && [self.delegate respondsToSelector:@selector(flickrDidGetLoginTokenIsSuccess:withRequest:withFailType:)])
-//            {
-//                [self.delegate flickrDidGetLoginTokenIsSuccess:NO withRequest:nil withFailType:DidGetLoginTokenFailType_NoResponse];
-//            }
-            
             for (id<VEIpadShareFlickrDelegate> observer in _observers)
             {
                 if (observer && [observer respondsToSelector:@selector(flickrDidGetLoginTokenIsSuccess:withRequest:withFailType:)])
@@ -542,7 +488,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
             
             return;
         }
-        else // got result
+        else
         {
             if ([(NSHTTPURLResponse *)response statusCode] < 400)
             {
@@ -550,19 +496,11 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
                 
                 if (!result)
                 {
-                    //  show something wrent wrong in our window
-//                    [_flickrDelegate flickrShowMessage:err.localizedDescription];
-                    
-//                    if (self.delegate && [self.delegate respondsToSelector:@selector(flickrDidGetLoginTokenIsSuccess:withRequest:withFailType:)])
-//                    {
-//                        [self.delegate flickrDidGetLoginTokenIsSuccess:NO withRequest:nil withFailType:DidGetLoginTokenFailType_NoResponse];
-//                    }
-                    
                     for (id<VEIpadShareFlickrDelegate> observer in _observers)
                     {
                         if (observer && [observer respondsToSelector:@selector(flickrDidGetLoginTokenIsSuccess:withRequest:withFailType:)])
                         {
-                            [observer flickrDidGetLoginTokenIsSuccess:NO withRequest:nil withFailType:DidGetLoginTokenFailType_NoResponse];
+                            [observer flickrDidGetLoginTokenIsSuccess:NO withRequest:nil withFailType:DidGetLoginTokenFailType_ResponseDataError];
                         }
                     }
                     
@@ -573,20 +511,11 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
                     [_requestToken release];
                     _requestToken = nil;
                     _requestToken = [[OAToken alloc]initWithHTTPResponseBody:result];
-                    
-//                    [[NSUserDefaults standardUserDefaults]setObject:_requestToken forKey:KEY_OATOKEN_FLICKR];
 
                     NSString *urlStr = [NSString stringWithFormat:@"http://www.flickr.com/services/oauth/authorize?%@&perms=write", result];
                     NSURL *url = [NSURL URLWithString:urlStr];
                     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5.0f];
-                    
-//                    [_flickrDelegate flickrOpenLoginURL:url];
-                    
-//                    if (self.delegate && [self.delegate respondsToSelector:@selector(flickrDidGetLoginTokenIsSuccess:withRequest:withFailType:)])
-//                    {
-//                        [self.delegate flickrDidGetLoginTokenIsSuccess:YES withRequest:req withFailType:DidGetLoginTokenFailType_NoFail];
-//                    }
-                    
+
                     for (id<VEIpadShareFlickrDelegate> observer in _observers)
                     {
                         if (observer && [observer respondsToSelector:@selector(flickrDidGetLoginTokenIsSuccess:withRequest:withFailType:)])
@@ -617,7 +546,6 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
     }
 }
 
-
 /**
  取得使用者授權
  
@@ -632,39 +560,42 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
     NSRange oauthTokenRange = [retStr rangeOfString:@"oauth_token="];
     NSRange verifierRange = [retStr rangeOfString:@"oauth_verifier="];
     
-    if (oauthTokenRange.location == NSNotFound || verifierRange.location == NSNotFound)
+    if (oauthTokenRange.location == NSNotFound)
     {
-//        [_flickrDelegate flickrShowMessage:@"flickr Authenticate failure"];
-        
-//        if (self.delegate && [self.delegate respondsToSelector:@selector(flickrAuthenticateIsSuccess:withFailType:)])
-//        {
-//            [self.delegate flickrAuthenticateIsSuccess:NO withFailType:FlickrAuthenticateFailType_NoTokenReturn];
-//        }
-        
         for (id<VEIpadShareFlickrDelegate> observer in _observers)
         {
             if (observer && [observer respondsToSelector:@selector(flickrAuthenticateIsSuccess:withFailType:)])
             {
-                [observer flickrAuthenticateIsSuccess:NO withFailType:FlickrAuthenticateFailType_NoTokenReturn];
+                [observer flickrAuthenticateIsSuccess:NO withFailType:FlickrAuthenticateFailType_NoOauthTokenReturn];
             }
         }
         
         return;
     }
+    else if (verifierRange.location == NSNotFound)
+    {
+        for (id<VEIpadShareFlickrDelegate> observer in _observers)
+        {
+            if (observer && [observer respondsToSelector:@selector(flickrAuthenticateIsSuccess:withFailType:)])
+            {
+                [observer flickrAuthenticateIsSuccess:NO withFailType:FlickrAuthenticateFailType_NoVerifierReturn];
+            }
+        }
+    }
     else
     {
         NSString *oauth_token = [retStr substringFromIndex:oauthTokenRange.location + oauthTokenRange.length];
+        
+        NSLog(@"oauth_token = %@", oauth_token);
+        
         oauth_token = [oauth_token substringToIndex:[oauth_token rangeOfString:@"&"].location];
+        
+        NSLog(@"oauth_token = %@", oauth_token);
         
         NSString *oauth_verifier = [retStr substringFromIndex:verifierRange.location + verifierRange.length];
         
         _oauth_verifier = oauth_verifier;
-        
-//        if (self.delegate && [self.delegate respondsToSelector:@selector(flickrAuthenticateIsSuccess:withFailType:)])
-//        {
-//            [self.delegate flickrAuthenticateIsSuccess:YES withFailType:FlickrAuthenticateFailType_NoFail];
-//        }
-        
+
         for (id<VEIpadShareFlickrDelegate> observer in _observers)
         {
             if (observer && [observer respondsToSelector:@selector(flickrAuthenticateIsSuccess:withFailType:)])
@@ -679,6 +610,19 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
 
 - (void)flickrAccessToken
 {
+    if (!_oaconsumer || !_requestToken)
+    {
+        for (id<VEIpadShareFlickrDelegate> observer in _observers)
+        {
+            if (observer && [observer respondsToSelector:@selector(flickrIsAccessTokenSuccess:withUsername:withFailType:)])
+            {
+                [observer flickrIsAccessTokenSuccess:NO withUsername:nil withFailType:FlickrAccessTokenFailType_NullInputToken];
+            }
+        }
+        
+        return;
+    }
+    
     NSURL *authorizeURL = [NSURL URLWithString:@"http://www.flickr.com/services/oauth/access_token"];
     OAMutableURLRequest *req = [[[OAMutableURLRequest alloc]initWithURL:authorizeURL
                                                               consumer:_oaconsumer
@@ -688,8 +632,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
     [req setHTTPMethod:@"GET"];
     [req setOAuthParameterName:@"oauth_verifier" withValue:_oauth_verifier];
     [req prepare];
-    
-    
+
     void(^handleFlickrLoginResponse)() = ^(NSData *inputData, NSURLResponse *response, NSError *inputError) {
         
         [_requestToken release];
@@ -697,16 +640,11 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
         
         if (!inputData || !response || inputError)
         {
-//            if (self.delegate && [self.delegate respondsToSelector:@selector(flickrIsAccessTokenSuccess:withUsername:withFailType:)])
-//            {
-//                [self.delegate flickrIsAccessTokenSuccess:NO withUsername:nil withFailType:FlickrAccessTokenFailType_Fail];
-//            }
-            
             for (id<VEIpadShareFlickrDelegate> observer in _observers)
             {
                 if (observer && [observer respondsToSelector:@selector(flickrIsAccessTokenSuccess:withUsername:withFailType:)])
                 {
-                    [observer flickrIsAccessTokenSuccess:NO withUsername:nil withFailType:FlickrAccessTokenFailType_Fail];
+                    [observer flickrIsAccessTokenSuccess:NO withUsername:nil withFailType:FlickrAccessTokenFailType_NoResponse];
                 }
             }
             
@@ -720,16 +658,11 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
                 
                 if (!authTokenStr)
                 {
-//                    if (self.delegate && [self.delegate respondsToSelector:@selector(flickrIsAccessTokenSuccess:withUsername:withFailType:)])
-//                    {
-//                        [self.delegate flickrIsAccessTokenSuccess:NO withUsername:nil withFailType:FlickrAccessTokenFailType_Fail];
-//                    }
-                    
                     for (id<VEIpadShareFlickrDelegate> observer in _observers)
                     {
                         if (observer && [observer respondsToSelector:@selector(flickrIsAccessTokenSuccess:withUsername:withFailType:)])
                         {
-                            [observer flickrIsAccessTokenSuccess:NO withUsername:nil withFailType:FlickrAccessTokenFailType_Fail];
+                            [observer flickrIsAccessTokenSuccess:NO withUsername:nil withFailType:FlickrAccessTokenFailType_ResponseDataError];
                         }
                     }
                     
@@ -756,29 +689,23 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
                     {
                         name = [authTokenStr substringFromIndex:usernameRange.location + usernameRange.length];
                     }
-                    
-                    
+
                     if (name)
                     {
                         [[NSUserDefaults standardUserDefaults] setObject:name forKey:@"essflickrvideouploadUsername"];
                     }
                     else
                     {
-                        name = NSLocalizedString(@"ESSFlickrUnknownUsername", @"");     //ESSLocalizedString(@"ESSFlickrUnknownUsername", nil);
+                        name = NSLocalizedString(@"ESSFlickrUnknownUsername", @"");
                     }
 
                     if (!_authToken)
                     {
-//                        if (self.delegate && [self.delegate respondsToSelector:@selector(flickrIsAccessTokenSuccess:withUsername:withFailType:)])
-//                        {
-//                            [self.delegate flickrIsAccessTokenSuccess:NO withUsername:nil withFailType:FlickrAccessTokenFailType_Fail];
-//                        }
-                        
                         for (id<VEIpadShareFlickrDelegate> observer in _observers)
                         {
                             if (observer && [observer respondsToSelector:@selector(flickrIsAccessTokenSuccess:withUsername:withFailType:)])
                             {
-                                [observer flickrIsAccessTokenSuccess:NO withUsername:nil withFailType:FlickrAccessTokenFailType_Fail];
+                                [observer flickrIsAccessTokenSuccess:NO withUsername:nil withFailType:FlickrAccessTokenFailType_NullToken];
                             }
                         }
                         
@@ -792,16 +719,11 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
             }
             else
             {
-//                if (self.delegate && [self.delegate respondsToSelector:@selector(flickrIsAccessTokenSuccess:withUsername:withFailType:)])
-//                {
-//                    [self.delegate flickrIsAccessTokenSuccess:NO withUsername:nil withFailType:FlickrAccessTokenFailType_Fail];
-//                }
-                
                 for (id<VEIpadShareFlickrDelegate> observer in _observers)
                 {
                     if (observer && [observer respondsToSelector:@selector(flickrIsAccessTokenSuccess:withUsername:withFailType:)])
                     {
-                        [observer flickrIsAccessTokenSuccess:NO withUsername:nil withFailType:FlickrAccessTokenFailType_Fail];
+                        [observer flickrIsAccessTokenSuccess:NO withUsername:nil withFailType:FlickrAccessTokenFailType_ResponseCodeError];
                     }
                 }
                 
@@ -832,7 +754,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
                     tags:(NSString *)tags
              makePrivate:(BOOL)makePrivate
 {
-	if (!url || !_authToken || !_oaconsumer || !_uploader)
+	if (!url || !_authToken || !_oaconsumer || _uploader)
     {
 //        [self.flickrDelegate flickrUploadFinishedWithFlickrVideoURL:NO returnURL:nil returnMessage:@"url is nil"];
         
@@ -840,7 +762,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
         {
             if (observer && [observer respondsToSelector:@selector(flickrUploadIsFinished:withReturnURL:withFailType:)])
             {
-                [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_Fail];
+                [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_NullInput];
             }
         }
         
@@ -994,9 +916,10 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
         {
             if (observer && [observer respondsToSelector:@selector(flickrUploadIsFinished:withReturnURL:withFailType:)])
             {
-                [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_Fail];
+                [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_NoPhotoID];
             }
         }
+        
 		return;
 	}
     
@@ -1030,7 +953,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
             {
                 if (observer && [observer respondsToSelector:@selector(flickrUploadIsFinished:withReturnURL:withFailType:)])
                 {
-                    [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_Fail];
+                    [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_ResponseNull];
                 }
             }
         }
@@ -1044,16 +967,17 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
             {
                 if (observer && [observer respondsToSelector:@selector(flickrUploadIsFinished:withReturnURL:withFailType:)])
                 {
-                    [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_Fail];
+                    [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_ResponseHasErrorInfo];
                 }
             }
         }
         
         NSRange pendingRange = [retStr rangeOfString:@"pending=\"1"];
+        
         if (pendingRange.location != NSNotFound)
         {
             [photoID retain];
-            double delayInSeconds = 15.0;
+            double delayInSeconds = 10.0;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                 [self _checkPhotoID:[photoID autorelease]];
@@ -1069,7 +993,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
             {
                 if (observer && [observer respondsToSelector:@selector(flickrUploadIsFinished:withReturnURL:withFailType:)])
                 {
-                    [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_Fail];
+                    [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_FailedIs1Info];
                 }
             }
         }
@@ -1125,7 +1049,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
     {
         if (observer && [observer respondsToSelector:@selector(flickrUploadIsFinished:withReturnURL:withFailType:)])
         {
-            [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_Fail];
+            [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_NetwordFail];
         }
     }
     
@@ -1184,17 +1108,9 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
         {
             if (observer && [observer respondsToSelector:@selector(flickrUploadIsFinished:withReturnURL:withFailType:)])
             {
-                [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_Fail];
+                [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_ResponseHasErrorInfoInCheckIsfinish];
             }
         }
-        
-//#if (!TARGET_OS_IPHONE && !TARGET_OS_EMBEDDED && !TARGET_IPHONE_SIMULATOR)
-//		[self._flWinCtr uploadFinishedWithFlickrURL:nil success:NO];
-//#else
-//        //		[self._viewCtr uploadFinishedWithURL:nil];
-//        NSLog(@"connectionDidFinishLoading 有错，要改；返回信息：%@", result);
-//        [self.flickrDelegate flickrUploadFinishedWithFlickrVideoURL:NO returnURL:nil returnMessage:result ];
-//#endif
 	}
     else
 	{
@@ -1206,18 +1122,10 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
             {
                 if (observer && [observer respondsToSelector:@selector(flickrUploadIsFinished:withReturnURL:withFailType:)])
                 {
-                    [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_Fail];
+                    [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_NOFoundPhotoIDInCheckIsfinish];
                 }
             }
-            
-//#if (!TARGET_OS_IPHONE && !TARGET_OS_EMBEDDED && !TARGET_IPHONE_SIMULATOR)
-//			[self._flWinCtr uploadFinishedWithFlickrURL:nil success:NO];
-//#else
-//            //			[self._viewCtr uploadFinishedWithURL:nil];
-//            NSLog(@"connectionDidFinishLoading 有错，要改；返回信息：%@",result);
-//            [self.flickrDelegate flickrUploadFinishedWithFlickrVideoURL:NO returnURL:nil returnMessage:result ];
-//#endif
-//			[result release];
+
 			return;
 		}
 		

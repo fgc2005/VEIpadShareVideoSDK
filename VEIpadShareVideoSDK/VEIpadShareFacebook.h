@@ -15,7 +15,7 @@ typedef enum
     FacebookAuthenticateFailType_NoToken,
     FacebookAuthenticateFailType_TokenLoginFail,
 }
-facebookAuthenticateFailType;
+FacebookAuthenticateFailType;
 
 typedef enum
 {
@@ -38,7 +38,7 @@ FacebookUploadFailType;
 @optional
 - (void)facebookNetworkIsCorrect:(BOOL)isCorrect;
 - (void)facebookIsStoreTokenValid:(BOOL)isValid;
-- (void)facebookAuthenticateIsSuccess:(BOOL)isSuccess withFailType:(facebookAuthenticateFailType)type;
+- (void)facebookAuthenticateIsSuccess:(BOOL)isSuccess withFailType:(FacebookAuthenticateFailType)type;
 
 - (void)facebookUploadFinish:(BOOL)isFinish returnURL:(NSURL *)returnURL returnMessage:(FacebookUploadFailType)type;
 - (void)facebookUploadUpdatedWithBytes:(long)totalBytesWritten ofTotalBytes:(long)totalBytesExpectedToWrite;
@@ -47,7 +47,7 @@ FacebookUploadFailType;
 
 @interface VEIpadShareFacebook : NSObject
 {
-//    NSString            *_appID;
+    //    NSString            *_appID;
     NSString            *_appSecret;
     
     NSString            *_uploadedObjectID;
@@ -72,7 +72,7 @@ FacebookUploadFailType;
 //  从头开始流程，从验证网络开始
 - (void)go:(BOOL)isAsyn;
 
-//  检查网络, 回调或者直接返回BOOL
+//  检查网络, 回调或者直接返回  BOOL
 - (void)checkFacebookInternet;
 
 //  检查token，如果token验证通过，进入登陆状态，否则需要登陆。如果合法，则不再回调facebookAuthenticateSuccess
