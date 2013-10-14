@@ -124,13 +124,41 @@ FlickrUploadFailType;
  */
 
 
-// 3 . 取得要求記錄
 //  获取登陆页面的权限，如果成功，会返回URL给客户端
 - (void)flickrRequestLoginPageToken;
 
 //  对网页返回来的结果进行分析, 判断是否取得使用者授權
 - (void)flickrHandleOpenURL:(NSURL *)url;
 
+/**
+ // 3 . 取得要求記錄
+ 交換要求記錄，以取得存取記錄的權限
+ 
+ 存取記錄 URL:
+ 
+ http://www.flickr.com/services/oauth/access_token
+ 
+ 使用者授權你的應用程式後，你可以交換核准的要求記錄以取得存取記錄。 此存取記錄應由你的應用程式儲存，用於向 Flickr 作出授權要求。
+ 
+ 以下是要求存取記錄的範例：
+ 
+ http://www.flickr.com/services/oauth/access_token
+ ?oauth_nonce=37026218
+ &oauth_timestamp=1305586309
+ &oauth_verifier=5d1b96a26b494074
+ &oauth_consumer_key=653e7a6ecc1d528c516cc8f92cf98611
+ &oauth_signature_method=HMAC-SHA1
+ &oauth_version=1.0
+ &oauth_token=72157626737672178-022bbd2f4c2f3432
+ &oauth_signature=UD9TGXzrvLIb0Ar5ynqvzatM58U%3D
+ Flickr 會傳回類似於以下內容的回覆：
+ 
+ fullname=Jamal%20Fanaian
+ &oauth_token=72157626318069415-087bfc7b5816092c
+ &oauth_token_secret=a202d1f853ec69de
+ &user_nsid=21207597%40N07
+ &username=jamalfanaian
+ */
 //  交換要求記錄，以取得存取記錄的權限.从页面认证成功后，可以获取信息
 - (void)flickrAccessToken;
 

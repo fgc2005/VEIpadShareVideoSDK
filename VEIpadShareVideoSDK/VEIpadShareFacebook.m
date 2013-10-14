@@ -210,8 +210,10 @@
         
         if (name)
         {
-            [[NSUserDefaults standardUserDefaults] setObject:token forKey:KEY_TOKEN_FACEBOOK];
-            [[NSUserDefaults standardUserDefaults] setObject:expDate forKey:KEY_LOGIN_DATE_FOR_EXPIRATION_FACEBOOK];
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:token forKey:KEY_TOKEN_FACEBOOK];
+            [userDefaults setObject:expDate forKey:KEY_LOGIN_DATE_FOR_EXPIRATION_FACEBOOK];
+            [userDefaults synchronize];
 
             for (id<VEIpadShareFacebookDelegate> observer in _observers)
             {

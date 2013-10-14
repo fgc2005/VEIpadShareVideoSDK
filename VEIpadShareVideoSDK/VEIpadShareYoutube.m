@@ -544,17 +544,14 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
             return;
         }
         
-        [[NSUserDefaults standardUserDefaults]setObject:authToken forKey:KEY_TOKEN_YOUTUBE];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:authToken forKey:KEY_TOKEN_YOUTUBE];
+        [userDefaults synchronize];
         
         NSRange authRange = [authToken rangeOfString:@"Auth="];
         
         if (authRange.location == NSNotFound)
         {
-//            if (self.delegate && [self.delegate respondsToSelector:@selector(youtubeDidAuthorizeIsSuccess:withFailType:)])
-//            {
-//                [self.delegate youtubeDidAuthorizeIsSuccess:NO withFailType:AuthorizeFailType_Fail];
-//            }
-            
             for (id<VEIpadShareYoutubeDelegate> observer in _observers)
             {
                 if (observer && [observer respondsToSelector:@selector(youtubeDidAuthorizeIsSuccess:withFailType:)])
@@ -565,13 +562,6 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
             
             return;
         }
-        
-        [[NSUserDefaults standardUserDefaults] setObject:authToken forKey:KEY_TOKEN_YOUTUBE];
-        
-//        if (self.delegate && [self.delegate respondsToSelector:@selector(youtubeDidAuthorizeIsSuccess:withFailType:)])
-//        {
-//            [self.delegate youtubeDidAuthorizeIsSuccess:YES withFailType:AuthorizeFailType_NoFail];
-//        }
         
         for (id<VEIpadShareYoutubeDelegate> observer in _observers)
         {

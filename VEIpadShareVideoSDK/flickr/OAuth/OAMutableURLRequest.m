@@ -195,6 +195,8 @@ signatureProvider:(id<OASignatureProviding, NSObject>)aProvider
     CFStringRef string = CFUUIDCreateString(NULL, theUUID);
     NSMakeCollectable(theUUID);
     nonce = (NSString *)string;
+    CFRelease(theUUID);
+    theUUID = NULL;
 }
 
 - (NSString *)_signatureBaseString 
@@ -239,17 +241,17 @@ signatureProvider:(id<OASignatureProviding, NSObject>)aProvider
 	BOOL shouldfree = NO;
     
     if ([[self HTTPMethod] isEqualToString:@"GET"] || [[self HTTPMethod] isEqualToString:@"DELETE"])
-        encodedParameters = [[[self URL] query] retain];
+        encodedParameters = [[[[self URL] query] retain]autorelease];
 	else
 	{
         // POST, PUT
 		shouldfree = YES;
-        encodedParameters = [[NSString alloc] initWithData:[self HTTPBody] encoding:NSASCIIStringEncoding];
+        encodedParameters = [[[NSString alloc] initWithData:[self HTTPBody] encoding:NSASCIIStringEncoding]autorelease];
     }
     
     if ((encodedParameters == nil) || ([encodedParameters isEqualToString:@""]))
 	{
-		[encodedParameters release];
+//		[encodedParameters release];
 		return nil;
 	}
     
@@ -265,8 +267,8 @@ signatureProvider:(id<OASignatureProviding, NSObject>)aProvider
     }
     
 	// Cleanup
-	if (shouldfree)
-		[encodedParameters release];
+//	if (shouldfree)
+//		[encodedParameters release];
 	
     return [requestParameters autorelease];
 }

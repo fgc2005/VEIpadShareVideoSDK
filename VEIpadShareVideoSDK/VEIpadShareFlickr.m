@@ -692,7 +692,10 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
 
                     if (name)
                     {
-                        [[NSUserDefaults standardUserDefaults] setObject:name forKey:@"essflickrvideouploadUsername"];
+                        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                        [userDefaults setObject:name forKey:@"essflickrvideouploadUsername"];
+                        [userDefaults synchronize];
+                        
                     }
                     else
                     {
