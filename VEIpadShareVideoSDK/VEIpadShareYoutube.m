@@ -9,6 +9,15 @@
 #import "VEIpadShareYoutube.h"
 #import <CoreFoundation/CoreFoundation.h>
 
+@interface VEIpadShareYoutube ()
+{
+    NSString                        *_forCheckVideoID;
+    YoutubeUploadFailType           _uploadFailType;
+    NSString                        *_checkMessage;
+}
+
+@end
+
 @implementation VEIpadShareYoutube
 
 #define     KEY_TOKEN_YOUTUBE                          @"token_youtube"
@@ -179,62 +188,77 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
     if ([state rangeOfString:@"requesterRegion" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         output = @"The video is not available in the user's region.";
+        _uploadFailType = YoutubeUploadFailType_RequesterRegion;
     }
     else if ([state rangeOfString:@"limitedSyndication" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         output = @"The video is not and, based on the content owner's current preferences, will not be available to play in non-browser devices, such as mobile phones.";
+        _uploadFailType = YoutubeUploadFailType_LimitedSyndication;
     }
     else if ([state rangeOfString:@"private" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         output = @"The video owner has restricted access to the video. This reasonCode signals that a video in a feed, such as a playlist or favorite videos feed, has been made a private video by the video's owner and is therefore unavailable.";
+        _uploadFailType = YoutubeUploadFailType_Private;
     }
     else if ([state rangeOfString:@"copyright" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         output = @"The video commits a copyright infringement.";
+        _uploadFailType = YoutubeUploadFailType_Copyright;
     }
     else if ([state rangeOfString:@"inappropriate" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         output = @"The video contains inappropriate content.";
+        _uploadFailType = YoutubeUploadFailType_Inappropriate;
     }
     else if ([state rangeOfString:@"duplicate" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         output = @"The video is a duplicate of another uploaded video.";
+        _uploadFailType = YoutubeUploadFailType_Duplicate;
     }
     else if ([state rangeOfString:@"termsOfUse" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         output = @"The video commits a terms of use violate.";
+        _uploadFailType = YoutubeUploadFailType_TermsOfUse;
     }
     else if ([state rangeOfString:@"suspended" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         output = @"The account associated with the video has been suspended.";
+        _uploadFailType = YoutubeUploadFailType_Suspended;
     }
     else if ([state rangeOfString:@"tooLong" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         output = @"The video exceeds the maximum duration of 10 minutes.";
+        _uploadFailType = YoutubeUploadFailType_TooLong;
     }
     else if ([state rangeOfString:@"blocked" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         output = @"The video has been blocked by the content owner.";
+        _uploadFailType = YoutubeUploadFailType_Blocked;
     }
     else if ([state rangeOfString:@"cantProcess" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         output = @"YouTube is unable to convert the video file.";
+        _uploadFailType = YoutubeUploadFailType_CantProcess;
     }
     else if ([state rangeOfString:@"invalidFormat" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         output = @"The uploaded video is in an invalid file format.";
+        _uploadFailType = YoutubeUploadFailType_InvalidFormat;
     }
     else if ([state rangeOfString:@"unsupportedCodec" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         output = @"The video uses an unsupported codec.";
+        _uploadFailType = YoutubeUploadFailType_UnsupportedCodec;
     }
     else if ([state rangeOfString:@"empty" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         output = @"The uploaded file is empty.";
+        _uploadFailType = YoutubeUploadFailType_Empty;
     }
     else if ([state rangeOfString:@"tooSmall" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         output = @"The uploaded file is too small.";
+        _uploadFailType = YoutubeUploadFailType_TooSmall;
     }
     
     return output;
@@ -705,11 +729,6 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
 {
 	if (!_developerKey || !TOKEN_YOUTUBE)
     {
-//        if (self.delegate && [self.delegate respondsToSelector:@selector(youtubeIsStoreTokenValid:)])
-//        {
-//            [self.delegate youtubeIsStoreTokenValid:NO];
-//        }
-        
         for (id<VEIpadShareYoutubeDelegate> observer in _observers)
         {
             if (observer && [observer respondsToSelector:@selector(youtubeIsStoreTokenValid:)])
@@ -769,12 +788,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
         {
             isValid = YES;
         }
-        
-//        if (self.delegate && [self.delegate respondsToSelector:@selector(youtubeIsStoreTokenValid:)])
-//        {
-//            [self.delegate youtubeIsStoreTokenValid:isValid];
-//        }
-        
+
         for (id<VEIpadShareYoutubeDelegate> observer in _observers)
         {
             if (observer && [observer respondsToSelector:@selector(youtubeIsStoreTokenValid:)])
@@ -797,26 +811,16 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
             handlerCheckYoutubeIsStoreTokenValidResponse(data, connectionError);
         }];
     }
-
-	
 }
 
 - (void)_judgeAndNotifyWithVideoID:(NSString *)vID isFinishUpload:(BOOL)isFinish isFail:(BOOL)isFail
 {
-    
-    //        BOOL finished = [isFinish boolValue];
-    //        return YES;
-    
-    NSString *videoID = vID;
-    
     if (!isFinish)
     {
-        [videoID retain];
         double delayInSeconds = 10.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [self _checkProcessingOnYouTubeWithVideoID:videoID];
-            [vID release];
+            [self _checkProcessingOnYouTubeWithVideoID:nil];
         });
         
         return;
@@ -825,64 +829,60 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
     {
         if (isFail)
         {
-//            if (self.delegate && [self.delegate respondsToSelector:@selector(youtubeUploadIsFinished:withYouTubeVideoURL:withFailType:)])
-//            {
-//                [self.delegate youtubeUploadIsFinished:NO withYouTubeVideoURL:nil withFailType:YoutubeUploadFailType_FinishFail];
-//            }
-            
             for (id<VEIpadShareYoutubeDelegate> observer in _observers)
             {
                 if (observer && [observer respondsToSelector:@selector(youtubeUploadIsFinished:withYouTubeVideoURL:withFailType:)])
                 {
-                    [observer youtubeUploadIsFinished:NO withYouTubeVideoURL:nil withFailType:YoutubeUploadFailType_FinishFail];
+                    [observer youtubeUploadIsFinished:NO withYouTubeVideoURL:nil withFailType:_uploadFailType];
                 }
             }
         }
         else
         {
-            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.youtube.com/watch?v=%@", videoID]];
-            
-//            if (self.delegate && [self.delegate respondsToSelector:@selector(youtubeUploadIsFinished:withYouTubeVideoURL:withFailType:)])
-//            {
-//                [self.delegate youtubeUploadIsFinished:YES withYouTubeVideoURL:url withFailType:YoutubeUploadFailType_FinishFail];
-//            }
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.youtube.com/watch?v=%@", _forCheckVideoID]];
             
             for (id<VEIpadShareYoutubeDelegate> observer in _observers)
             {
                 if (observer && [observer respondsToSelector:@selector(youtubeUploadIsFinished:withYouTubeVideoURL:withFailType:)])
                 {
-                    [observer youtubeUploadIsFinished:YES withYouTubeVideoURL:url withFailType:YoutubeUploadFailType_FinishFail];
+                    [observer youtubeUploadIsFinished:YES withYouTubeVideoURL:url withFailType:YoutubeUploadFailType_NoFail];
                 }
             }
         }
     }
 }
 
-NSString *checkMessage = nil;
-
 - (void)_checkProcessingOnYouTubeWithVideoID:(NSString *)vidID
 {
     BOOL failed = NO;
-    
     [self _videoUploadWithID:vidID isFinishedWithError:&failed];
 }
 
 - (void)_videoUploadWithID:(NSString *)videoID isFinishedWithError:(BOOL *)uploadFailed
 {
-	if (!videoID)
+	if (!_forCheckVideoID)
     {
-        checkMessage = @"Check does not pass";
+        _checkMessage = @"Check does not pass";
+        
+        _uploadFailType = YoutubeUploadFailType_videoIDNull;
+        
+        for (id<VEIpadShareYoutubeDelegate> observer in _observers)
+        {
+            if (observer && [observer respondsToSelector:@selector(youtubeUploadIsFinished:withYouTubeVideoURL:withFailType:)])
+            {
+                [observer youtubeUploadIsFinished:NO withYouTubeVideoURL:nil withFailType:_uploadFailType];
+            }
+        }
+        
         return;
     }
     
-    __block NSString *vID = videoID;
-
 	if (uploadFailed)
     {
         *uploadFailed = NO;
     }
 
-	NSString *urlString = [NSString stringWithFormat:@"https://gdata.youtube.com/feeds/api/users/default/uploads/%@", videoID];
+	NSString *urlString = [NSString stringWithFormat:@"https://gdata.youtube.com/feeds/api/users/default/uploads/%@", _forCheckVideoID];
 	NSURL *url = [NSURL URLWithString:urlString];
     
 	NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5.0f];
@@ -894,16 +894,19 @@ NSString *checkMessage = nil;
 	[req setValue:[@"GoogleLogin auth=" stringByAppendingString:[justAuth stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] forHTTPHeaderField:@"Authorization"];
 
     void (^handlerUploadYoutubeVideoResponse)() = ^(NSData *inputData, NSError *inputError) {
-        
-//        BOOL finished = YES;
-        
+
         BOOL fail = NO;
         
         if (!inputData)
         {
             fail = YES;
-            checkMessage = @"Check does not pass";
-            [self _judgeAndNotifyWithVideoID:vID isFinishUpload:YES isFail:fail];
+            
+            _checkMessage = @"Check does not pass";
+            
+            _uploadFailType = YoutubeUploadFailType_ResponseDataNull;
+            
+            [self _judgeAndNotifyWithVideoID:nil isFinishUpload:YES isFail:fail];
+            
             return;
         }
     
@@ -931,7 +934,8 @@ NSString *checkMessage = nil;
                 {
 //                    return NO; //still processing
 //                    handlerFinishUpload(NO, uploadFailed);
-                    [self _judgeAndNotifyWithVideoID:vID isFinishUpload:NO isFail:fail];
+                    [self _judgeAndNotifyWithVideoID:nil isFinishUpload:NO isFail:fail];
+                    
                     return;
                 }
                 else
@@ -947,9 +951,9 @@ NSString *checkMessage = nil;
                         state = [state substringToIndex:[state rangeOfString:@"'"].location];
                         NSLog(@"state = %@", state);
 
-                        checkMessage = [self messageDetailWithState:state];
+                        _checkMessage = [self messageDetailWithState:state];
                         
-                        NSLog(@"checkMessage = %@", checkMessage);
+                        NSLog(@"checkMessage = %@", _checkMessage);
                     }
 
                     fail = YES;
@@ -957,7 +961,8 @@ NSString *checkMessage = nil;
             }
         }
 
-        [self _judgeAndNotifyWithVideoID:vID isFinishUpload:YES isFail:fail];
+        [self _judgeAndNotifyWithVideoID:nil isFinishUpload:YES isFail:fail];
+        
         return;
     };
     
@@ -982,17 +987,12 @@ NSString *checkMessage = nil;
 	[_uploader cancel];
     [_uploader release];
 	_uploader = nil;
-    
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(youtubeUploadIsFinished:withYouTubeVideoURL:withFailType:)])
-//    {
-//        [self.delegate youtubeUploadIsFinished:NO withYouTubeVideoURL:nil withFailType:YoutubeUploadFailType_NoFinish];
-//    }
 
     for (id<VEIpadShareYoutubeDelegate> observer in _observers)
     {
         if (observer && [observer respondsToSelector:@selector(youtubeUploadIsFinished:withYouTubeVideoURL:withFailType:)])
         {
-            [observer youtubeUploadIsFinished:NO withYouTubeVideoURL:nil withFailType:YoutubeUploadFailType_NoFinish];
+            [observer youtubeUploadIsFinished:NO withYouTubeVideoURL:nil withFailType:YoutubeUploadFailType_NetworkError];
         }
     }
 }
@@ -1009,11 +1009,6 @@ NSString *checkMessage = nil;
 
 - (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 {
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(youtubeUploadUpdatedWithUploadedBytes:ofTotalBytes:)])
-//    {
-//        [self.delegate youtubeUploadUpdatedWithUploadedBytes:totalBytesWritten ofTotalBytes:totalBytesExpectedToWrite];
-//    }
-    
     for (id<VEIpadShareYoutubeDelegate> observer in _observers)
     {
         if (observer && [observer respondsToSelector:@selector(youtubeUploadUpdatedWithUploadedBytes:ofTotalBytes:)])
@@ -1030,7 +1025,10 @@ NSString *checkMessage = nil;
         return;
     }
     
-	NSString *resp = [[NSString alloc] initWithData:_receivedData encoding:NSUTF8StringEncoding];
+    [_forCheckVideoID release];
+    _forCheckVideoID = nil;
+    
+	NSString *resp = [[NSString alloc]initWithData:_receivedData encoding:NSUTF8StringEncoding];
     
     [_receivedData release];
 	_receivedData = nil;
@@ -1047,27 +1045,22 @@ NSString *checkMessage = nil;
         NSString *vidCode = [resp substringFromIndex:CodeRange.location + CodeRange.length];
         vidCode = [vidCode substringFromIndex:[vidCode rangeOfString:@">"].location+1];
         vidCode = [vidCode substringToIndex:[vidCode rangeOfString:@"</code>"].location];
-        NSLog(@"return error code :%@",vidCode);
+        NSLog(@"return error code :%@", vidCode);
         
         //get internalReason
         NSRange internalReasonRange = [resp rangeOfString:@"<internalReason"];
         NSString *vidInternalReason = [resp substringFromIndex:internalReasonRange.location + internalReasonRange.length];
         vidInternalReason = [vidInternalReason substringFromIndex:[vidInternalReason rangeOfString:@">"].location+1];
         vidInternalReason = [vidInternalReason substringToIndex:[vidInternalReason rangeOfString:@"</internalReason>"].location];
-        NSLog(@"return error code :%@",vidInternalReason);
-        
-//		[_youTubeDelegate uploadFinishedWithYouTubeVideoURL:nil failureInformation:vidInternalReason];
-        
-//        if (self.delegate && [self.delegate respondsToSelector:@selector(youtubeUploadIsFinished:withYouTubeVideoURL:withFailType:)])
-//        {
-//            [self.delegate youtubeUploadIsFinished:NO withYouTubeVideoURL:nil withFailType:YoutubeUploadFailType_FinishFail];
-//        }
+        NSLog(@"return error code :%@", vidInternalReason);
+
+        _uploadFailType = YoutubeUploadFailType_NoVideoTag;
         
         for (id<VEIpadShareYoutubeDelegate> observer in _observers)
         {
             if (observer && [observer respondsToSelector:@selector(youtubeUploadIsFinished:withYouTubeVideoURL:withFailType:)])
             {
-                [observer youtubeUploadIsFinished:NO withYouTubeVideoURL:nil withFailType:YoutubeUploadFailType_FinishFail];
+                [observer youtubeUploadIsFinished:NO withYouTubeVideoURL:nil withFailType:_uploadFailType];
             }
         }
 	}
@@ -1077,11 +1070,15 @@ NSString *checkMessage = nil;
 		NSString *vidID = [resp substringFromIndex:URLRange.location + URLRange.length];
 		vidID = [vidID substringToIndex:[vidID rangeOfString:@"</id>"].location];
 		
-		[self _checkProcessingOnYouTubeWithVideoID:vidID];
+        NSLog(@"vidID = %@", vidID);
         
+        _forCheckVideoID = [vidID retain];
+        
+		[self _checkProcessingOnYouTubeWithVideoID:vidID];
 	}
 	
 	[resp release];
+    resp = nil;
 	
 	[_uploader cancel];
     [_uploader release];

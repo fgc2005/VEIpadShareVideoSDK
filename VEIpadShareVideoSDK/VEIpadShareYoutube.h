@@ -20,9 +20,26 @@ YoutubeAuthorizeFailType;
 typedef enum
 {
     YoutubeUploadFailType_NoFail,
-    YoutubeUploadFailType_NoFinish,
-    YoutubeUploadFailType_FinishFail,
-    YoutubeUploadFailType_NotFinish
+    YoutubeUploadFailType_NetworkError,
+    YoutubeUploadFailType_ResponseDataNull,
+    YoutubeUploadFailType_videoIDNull,
+    
+    YoutubeUploadFailType_NoVideoTag,
+    YoutubeUploadFailType_RequesterRegion,
+    YoutubeUploadFailType_LimitedSyndication,
+    YoutubeUploadFailType_Private,
+    YoutubeUploadFailType_Copyright,
+    YoutubeUploadFailType_Inappropriate,
+    YoutubeUploadFailType_Duplicate,
+    YoutubeUploadFailType_TermsOfUse,
+    YoutubeUploadFailType_Suspended,
+    YoutubeUploadFailType_TooLong,
+    YoutubeUploadFailType_Blocked,
+    YoutubeUploadFailType_CantProcess,
+    YoutubeUploadFailType_InvalidFormat,
+    YoutubeUploadFailType_UnsupportedCodec,
+    YoutubeUploadFailType_Empty,
+    YoutubeUploadFailType_TooSmall
 }
 YoutubeUploadFailType;
 
