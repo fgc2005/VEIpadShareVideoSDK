@@ -326,6 +326,9 @@ NSString *kSKPSMTPPartContentTransferEncodingKey = @"kSKPSMTPPartContentTransfer
             
             break;
         }
+            
+            default:
+            break;
     }
 }
             
