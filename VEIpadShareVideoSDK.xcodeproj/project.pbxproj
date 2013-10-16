@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		429EEDA4180EE6DD004954B5 /* VEIpadShareEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 429EEDA3180EE6DD004954B5 /* VEIpadShareEmail.m */; };
+		429EEDAF180EE724004954B5 /* EmailBase64Transcoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 429EEDA8180EE724004954B5 /* EmailBase64Transcoder.m */; };
+		429EEDB0180EE724004954B5 /* EmailUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 429EEDAA180EE724004954B5 /* EmailUtil.m */; };
+		429EEDB1180EE724004954B5 /* HSK_CFUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 429EEDAC180EE724004954B5 /* HSK_CFUtilities.m */; };
+		429EEDB2180EE724004954B5 /* SKPSMTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 429EEDAE180EE724004954B5 /* SKPSMTPMessage.m */; };
 		42AB80FD1807C1F9007F3876 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AB80FC1807C1F8007F3876 /* Foundation.framework */; };
 		42AB81021807C1F9007F3876 /* VEIpadShareVideoSDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42AB81011807C1F9007F3876 /* VEIpadShareVideoSDK.h */; };
 		42AB81041807C1F9007F3876 /* VEIpadShareVideoSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB81031807C1F9007F3876 /* VEIpadShareVideoSDK.m */; };
@@ -69,6 +74,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		429EEDA2180EE6DD004954B5 /* VEIpadShareEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VEIpadShareEmail.h; sourceTree = "<group>"; };
+		429EEDA3180EE6DD004954B5 /* VEIpadShareEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VEIpadShareEmail.m; sourceTree = "<group>"; };
+		429EEDA7180EE724004954B5 /* EmailBase64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailBase64Transcoder.h; sourceTree = "<group>"; };
+		429EEDA8180EE724004954B5 /* EmailBase64Transcoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailBase64Transcoder.m; sourceTree = "<group>"; };
+		429EEDA9180EE724004954B5 /* EmailUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailUtil.h; sourceTree = "<group>"; };
+		429EEDAA180EE724004954B5 /* EmailUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailUtil.m; sourceTree = "<group>"; };
+		429EEDAB180EE724004954B5 /* HSK_CFUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSK_CFUtilities.h; sourceTree = "<group>"; };
+		429EEDAC180EE724004954B5 /* HSK_CFUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSK_CFUtilities.m; sourceTree = "<group>"; };
+		429EEDAD180EE724004954B5 /* SKPSMTPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPSMTPMessage.h; sourceTree = "<group>"; };
+		429EEDAE180EE724004954B5 /* SKPSMTPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPSMTPMessage.m; sourceTree = "<group>"; };
 		42AB80F91807C1F8007F3876 /* libVEIpadShareVideoSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVEIpadShareVideoSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		42AB80FC1807C1F8007F3876 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		42AB81001807C1F9007F3876 /* VEIpadShareVideoSDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VEIpadShareVideoSDK-Prefix.pch"; sourceTree = "<group>"; };
@@ -155,6 +170,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		429EEDA5180EE724004954B5 /* email */ = {
+			isa = PBXGroup;
+			children = (
+				429EEDA6180EE724004954B5 /* EmailSmtp */,
+			);
+			path = email;
+			sourceTree = "<group>";
+		};
+		429EEDA6180EE724004954B5 /* EmailSmtp */ = {
+			isa = PBXGroup;
+			children = (
+				429EEDA7180EE724004954B5 /* EmailBase64Transcoder.h */,
+				429EEDA8180EE724004954B5 /* EmailBase64Transcoder.m */,
+				429EEDA9180EE724004954B5 /* EmailUtil.h */,
+				429EEDAA180EE724004954B5 /* EmailUtil.m */,
+				429EEDAB180EE724004954B5 /* HSK_CFUtilities.h */,
+				429EEDAC180EE724004954B5 /* HSK_CFUtilities.m */,
+				429EEDAD180EE724004954B5 /* SKPSMTPMessage.h */,
+				429EEDAE180EE724004954B5 /* SKPSMTPMessage.m */,
+			);
+			path = EmailSmtp;
+			sourceTree = "<group>";
+		};
 		42AB80F01807C1F8007F3876 = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +236,9 @@
 				42AB817718083E0C007F3876 /* VEIpadShareFacebook.m */,
 				42AB817818083E0C007F3876 /* VEIpadShareYoutube.h */,
 				42AB817918083E0C007F3876 /* VEIpadShareYoutube.m */,
+				429EEDA2180EE6DD004954B5 /* VEIpadShareEmail.h */,
+				429EEDA3180EE6DD004954B5 /* VEIpadShareEmail.m */,
+				429EEDA5180EE724004954B5 /* email */,
 				42AB81281807C29A007F3876 /* flickr */,
 				42AB80FF1807C1F9007F3876 /* Supporting Files */,
 			);
@@ -410,16 +451,21 @@
 				42AB81501807C29A007F3876 /* OAPlaintextSignatureProvider.m in Sources */,
 				42AB817A18083E0C007F3876 /* VEIpadShareFlickr.m in Sources */,
 				42AB814B1807C29A007F3876 /* OAAsynchronousDataFetcher.m in Sources */,
+				429EEDA4180EE6DD004954B5 /* VEIpadShareEmail.m in Sources */,
 				42AB81541807C29A007F3876 /* OAToken_KeychainExtensions.m in Sources */,
 				42AB81531807C29A007F3876 /* OAToken.m in Sources */,
+				429EEDB2180EE724004954B5 /* SKPSMTPMessage.m in Sources */,
 				42AB814E1807C29A007F3876 /* OAHMAC_SHA1SignatureProvider.m in Sources */,
 				42AB817C18083E0C007F3876 /* VEIpadShareYoutube.m in Sources */,
+				429EEDB1180EE724004954B5 /* HSK_CFUtilities.m in Sources */,
 				42AB81551807C29A007F3876 /* OAuthUtils.m in Sources */,
+				429EEDB0180EE724004954B5 /* EmailUtil.m in Sources */,
 				42AB817B18083E0C007F3876 /* VEIpadShareFacebook.m in Sources */,
 				42AB814D1807C29A007F3876 /* OADataFetcher.m in Sources */,
 				42AB81511807C29A007F3876 /* OARequestParameter.m in Sources */,
 				42AB814C1807C29A007F3876 /* OAConsumer.m in Sources */,
 				42AB81521807C29A007F3876 /* OAServiceTicket.m in Sources */,
+				429EEDAF180EE724004954B5 /* EmailBase64Transcoder.m in Sources */,
 				42AB81041807C1F9007F3876 /* VEIpadShareVideoSDK.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
