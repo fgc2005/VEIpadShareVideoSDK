@@ -111,7 +111,19 @@ SKPSMTPMessageDelegate
     
     if ([self checkData])
     {
+        for (id<VEIpadShareEmailDelegate> observer in _observers)
+        {
+            if (observer && [observer respondsToSelector:@selector(sendEmailStart)])
+            {
+                [observer sendEmailStart];
+            }
+        }
+        
         [_smtpMessage send];
+    }
+    else
+    {
+        
     }
 }
 
@@ -120,35 +132,88 @@ SKPSMTPMessageDelegate
     if (0 == [_smtpMessage.toEmail length])
     {
 //        [_emailDelegate emailPromptMessage:@"to email nil"];
+        
+        for (id<VEIpadShareEmailDelegate> observer in _observers)
+        {
+            if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:)])
+            {
+                [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_ToEmailNull];
+            }
+        }
+        
         return NO;
     }
     else if (0 == [_smtpMessage.fromEmail length])
     {
 //        [_emailDelegate emailPromptMessage:@"from email nil"];
+        
+        for (id<VEIpadShareEmailDelegate> observer in _observers)
+        {
+            if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:)])
+            {
+                [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_FromEmailNull];
+            }
+        }
+        
         return NO;
     }
     else if (0 == [_smtpMessage.pass length])
     {
 //        [_emailDelegate emailPromptMessage:@"from email password nil"];
+        
+        for (id<VEIpadShareEmailDelegate> observer in _observers)
+        {
+            if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:)])
+            {
+                [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_FromPasswrodNull];
+            }
+        }
+        
         return NO;
     }
     else if (0 == [_smtpMessage.relayHost length])
     {
 //        [_emailDelegate emailPromptMessage:@"relay host  nil"];
+        
+        for (id<VEIpadShareEmailDelegate> observer in _observers)
+        {
+            if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:)])
+            {
+                [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_RelayHostNull];
+            }
+        }
+        
         return NO;
     }
-    else if(0 == [_smtpMessage.subject length])
+    else if (0 == [_smtpMessage.subject length])
     {
 //        [_emailDelegate emailPromptMessage:@"email subject nil"];
+        
+        for (id<VEIpadShareEmailDelegate> observer in _observers)
+        {
+            if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:)])
+            {
+                [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_EmailSubjectNull];
+            }
+        }
+        
         return NO;
     }
-    else if(0 == [_sendVideoURL.relativePath length])
+    else if (0 == [_sendVideoURL.relativePath length])
     {
 //        [_emailDelegate emailPromptMessage:@"emial video nil"];
+        
+        for (id<VEIpadShareEmailDelegate> observer in _observers)
+        {
+            if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:)])
+            {
+                [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_EmialVideoNull];
+            }
+        }
+        
         return NO;
     }
-    
-    
+
     return YES;
 }
 
@@ -158,9 +223,9 @@ SKPSMTPMessageDelegate
 {
     for (id<VEIpadShareEmailDelegate> observer in _observers)
     {
-        if (observer && [_observers respondsToSelector:@selector(sendEmailIsSuccess:withFailType:)])
+        if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:)])
         {
-            [observer sendEmailIsSuccess:YES withFailType:sendEmailFailType_NoFail];
+            [observer sendEmailIsSuccess:YES withFailType:SendEmailFailType_NoFail];
         }
     }
 }
@@ -169,9 +234,9 @@ SKPSMTPMessageDelegate
 {
     for (id<VEIpadShareEmailDelegate> observer in _observers)
     {
-        if (observer && [_observers respondsToSelector:@selector(sendEmailIsSuccess:withFailType:)])
+        if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:)])
         {
-            [observer sendEmailIsSuccess:YES withFailType:sendEmailFailType_Fail];
+            [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_Fail];
         }
     }
 }
@@ -182,7 +247,7 @@ SKPSMTPMessageDelegate
     
     for (id<VEIpadShareEmailDelegate> observer in _observers)
     {
-        if (observer && [_observers respondsToSelector:@selector(sendEmailProgress:)])
+        if (observer && [observer respondsToSelector:@selector(sendEmailProgress:)])
         {
             [observer sendEmailProgress:p];
         }

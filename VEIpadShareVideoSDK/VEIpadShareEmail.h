@@ -10,13 +10,21 @@
 
 typedef enum
 {
-    sendEmailFailType_NoFail,
-    sendEmailFailType_Fail,
+    SendEmailFailType_NoFail,
+    SendEmailFailType_ToEmailNull,
+    SendEmailFailType_FromEmailNull,
+    SendEmailFailType_FromPasswrodNull,
+    SendEmailFailType_RelayHostNull,
+    SendEmailFailType_EmailSubjectNull,
+    SendEmailFailType_EmialVideoNull,
+    SendEmailFailType_Fail,
 }
 SendEmailFailType;
 
 @protocol VEIpadShareEmailDelegate <NSObject>
 
+@optional
+- (void)sendEmailStart;
 - (void)sendEmailIsSuccess:(BOOL)isSuccess withFailType:(SendEmailFailType)type;
 - (void)sendEmailProgress:(float)progress;
 
