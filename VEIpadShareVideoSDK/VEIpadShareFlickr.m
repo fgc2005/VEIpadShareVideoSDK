@@ -266,7 +266,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
     
     void (^handlerCheckFlickrInternetResponse)() = ^(NSData *inputData, NSError *inputError) {
     
-        if (!inputData|| inputError)
+        if (nil == inputData || nil != inputError)
         {
 //            [_flickrDelegate flickrShowMessage:[@"flickr:" stringByAppendingString: err.localizedDescription ]];
             
@@ -626,7 +626,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
 
 - (void)flickrAccessToken
 {
-    if (!_oaconsumer || !_requestToken)
+    if (nil == _oaconsumer || nil == _requestToken)
     {
         for (id<VEIpadShareFlickrDelegate> observer in _observers)
         {
@@ -672,7 +672,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
             {
                 NSString *authTokenStr = [[[NSString alloc]initWithData:inputData encoding:NSUTF8StringEncoding]autorelease];
                 
-                if (!authTokenStr)
+                if (0 == [authTokenStr length])
                 {
                     for (id<VEIpadShareFlickrDelegate> observer in _observers)
                     {

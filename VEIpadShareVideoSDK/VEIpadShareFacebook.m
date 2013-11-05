@@ -257,7 +257,7 @@
                      description:(NSString *)description
                        isPrivate:(BOOL)isPrivate
 {
-    if (!videoURL)
+    if (nil == videoURL)
     {
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
@@ -437,7 +437,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-	if (!_receivedData)
+	if (nil == _receivedData)
     {
         _receivedData = [[NSMutableData alloc]init];
     }
@@ -477,7 +477,7 @@
 	NSString *uploadTempFilename = [NSTemporaryDirectory() stringByAppendingPathComponent:@"essfacebookTempVideoUpload"];
 	[[NSFileManager defaultManager] removeItemAtPath:uploadTempFilename error:nil];
 	
-	if (!_uploadedObjectID)
+	if (nil == _uploadedObjectID)
 	{
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {

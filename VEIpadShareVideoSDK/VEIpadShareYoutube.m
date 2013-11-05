@@ -372,7 +372,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
 	
     void (^handlerGetYoutubeCategoriesDictionaryResponse)() = ^(NSData *inputData, NSError *inputError) {
         
-        if (!inputData)
+        if (nil == inputData)
         {
 //            if (self.delegate && [self.delegate respondsToSelector:@selector(youtubeDidGetCategor:)])
 //            {
@@ -751,7 +751,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
             isValid = NO;
         }
         
-        if (!inputData)
+        if (nil == inputData)
         {
             isValid = NO;
         }
