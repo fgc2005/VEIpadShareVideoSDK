@@ -757,7 +757,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
                     tags:(NSString *)tags
              makePrivate:(BOOL)makePrivate
 {
-	if (!url || !_authToken || !_oaconsumer || _uploader)
+	if (!url)
     {
 //        [self.flickrDelegate flickrUploadFinishedWithFlickrVideoURL:NO returnURL:nil returnMessage:@"url is nil"];
         
@@ -765,11 +765,44 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
         {
             if (observer && [observer respondsToSelector:@selector(flickrUploadIsFinished:withReturnURL:withFailType:)])
             {
-                [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_NullInput];
+                [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_NullInputURL];
             }
         }
         
         return;
+    }
+
+    if (!_authToken)
+    {
+        for (id<VEIpadShareFlickrDelegate> observer in _observers)
+        {
+            if (observer && [observer respondsToSelector:@selector(flickrUploadIsFinished:withReturnURL:withFailType:)])
+            {
+                [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_NullInputAuthToken];
+            }
+        }
+    }
+    
+    if (!_oaconsumer)
+    {
+        for (id<VEIpadShareFlickrDelegate> observer in _observers)
+        {
+            if (observer && [observer respondsToSelector:@selector(flickrUploadIsFinished:withReturnURL:withFailType:)])
+            {
+                [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_NullInputOaconsumer];
+            }
+        }
+    }
+    
+    if (!_uploader)
+    {
+        for (id<VEIpadShareFlickrDelegate> observer in _observers)
+        {
+            if (observer && [observer respondsToSelector:@selector(flickrUploadIsFinished:withReturnURL:withFailType:)])
+            {
+                [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_NullInputUploader];
+            }
+        }
     }
     
     AVURLAsset *vid = [[[AVURLAsset alloc] initWithURL:url options:nil] autorelease];

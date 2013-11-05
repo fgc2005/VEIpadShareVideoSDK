@@ -765,14 +765,39 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
         
         //  changes by Jean-Pierre Rizzi
         NSString *username = nil;
-        username = [retStr substringFromIndex:userNameRange.location+userNameRange.length];
-        username = [username substringFromIndex:[username rangeOfString:@">"].location+1];
-        username = [username substringToIndex:[username rangeOfString:@"</yt:username"].location];
+        
+        if (retStr)
+        {
+            username = [retStr substringFromIndex:userNameRange.location+userNameRange.length];
+        }
+
+        if (username)
+        {
+            username = [username substringFromIndex:[username rangeOfString:@">"].location+1];
+        }
+        
+        if (username)
+        {
+            username = [username substringToIndex:[username rangeOfString:@"</yt:username"].location];
+        }
+        
         
         NSString *nameStr = nil;
-        nameStr = [retStr substringFromIndex:nameRange.location+nameRange.length];
-        nameStr = [nameStr substringFromIndex:[nameStr rangeOfString:@">"].location+1];
-        nameStr = [nameStr substringToIndex:[nameStr rangeOfString:@"</name"].location];
+        
+        if (retStr)
+        {
+            nameStr = [retStr substringFromIndex:nameRange.location+nameRange.length];
+        }
+        
+        if (nameStr)
+        {
+            nameStr = [nameStr substringFromIndex:[nameStr rangeOfString:@">"].location+1];
+        }
+        
+        if (nameStr)
+        {
+            nameStr = [nameStr substringToIndex:[nameStr rangeOfString:@"</name"].location];
+        }
         
         if (nameStr && [nameStr length] > 0)
         {

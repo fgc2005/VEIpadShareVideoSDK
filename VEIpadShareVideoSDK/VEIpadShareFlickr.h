@@ -38,7 +38,10 @@ FlickrAccessTokenFailType;
 typedef enum
 {
     FlickrUploadFailType_NoFail,
-    FlickrUploadFailType_NullInput,
+    FlickrUploadFailType_NullInputURL,
+    FlickrUploadFailType_NullInputAuthToken,
+    FlickrUploadFailType_NullInputOaconsumer,
+    FlickrUploadFailType_NullInputUploader,
     FlickrUploadFailType_LongTime,
     FlickrUploadFailType_NoPhotoID,
     FlickrUploadFailType_ResponseNull,
