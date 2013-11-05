@@ -24,6 +24,9 @@ SKPSMTPMessageDelegate
 
 @implementation VEIpadShareEmail
 
+#define NSLog_INFO(xx, ...) NSLog(xx, ##__VA_ARGS__)
+#define NSLog_DEBUG(xx, ...) NSLog(@"%@ %s %d: " xx, [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __func__, __LINE__, ##__VA_ARGS__)
+
 - (void)dealloc
 {
     _smtpMessage.delegate = nil;

@@ -20,6 +20,17 @@
 
 #pragma mark - addition
 
+#ifdef DEBUG
+
+#define NSLog_INFO(xx, ...) NSLog(xx, ##__VA_ARGS__)
+#define NSLog_DEBUG(xx, ...) NSLog(@"%@ %s %d: " xx, [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __func__, __LINE__, ##__VA_ARGS__)
+
+#else
+
+#define NSLog_INFO(xx, ...)
+#define NSLog_DEBUG(xx, ...)
+
+#endif
 
 @interface VEIpadShareFlickr()
 {
@@ -315,7 +326,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
 {
     OAToken *authToken = nil;
     
-    if (!forCheckToken)
+    if (nil == forCheckToken)
     {
         authToken = [[[OAToken alloc]initWithUserDefaultsUsingServiceProviderName:@"essflickr" prefix:@"essflickrvideoupload"]autorelease];
     }
@@ -324,7 +335,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
         authToken = [[forCheckToken retain]autorelease];
     }
 
-	if (!authToken)
+	if (nil == authToken)
     {
         for (id<VEIpadShareFlickrDelegate> observer in _observers)
         {
@@ -358,9 +369,9 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
     
     void(^handleCheckFlickrIsStoreTokenValidResponse)() = ^(NSData *inputData, NSError *inputError) {
 
-        if (!inputData || inputError)
+        if (nil == inputData || nil != inputError)
         {
-            if (!forCheckToken)
+            if (nil == forCheckToken)
             {
                 for (id<VEIpadShareFlickrDelegate> observer in _observers)
                 {
@@ -405,7 +416,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
             checkIsTokenValid = isValid;
         }
         
-        if (!forCheckToken)
+        if (nil == forCheckToken)
         {
             for (id<VEIpadShareFlickrDelegate> observer in _observers)
             {
@@ -423,6 +434,9 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
                 {
                     if (checkIsTokenValid)
                     {
+                        [_authToken release];
+                        _authToken = nil;
+                        _authToken = [authToken retain];
                         [observer flickrIsAccessTokenSuccess:YES withUsername:username withFailType:FlickrAccessTokenFailType_NoFail];
                     }
                     else
@@ -476,7 +490,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
     
     void(^handleFlickrLoginResponse)() = ^(NSData *inputData, NSURLResponse *response, NSError *inputError) {
     
-        if (!inputData || inputError)
+        if (nil == inputData || nil != inputError)
         {
             for (id<VEIpadShareFlickrDelegate> observer in _observers)
             {
@@ -494,7 +508,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
             {
                 NSString *result = [[[NSString alloc]initWithData:inputData encoding:NSUTF8StringEncoding]autorelease];
                 
-                if (!result)
+                if (nil == result)
                 {
                     for (id<VEIpadShareFlickrDelegate> observer in _observers)
                     {
@@ -586,15 +600,17 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
     {
         NSString *oauth_token = [retStr substringFromIndex:oauthTokenRange.location + oauthTokenRange.length];
         
-        NSLog(@"oauth_token = %@", oauth_token);
+        NSLog_DEBUG(@"oauth_token = %@", oauth_token);
         
         oauth_token = [oauth_token substringToIndex:[oauth_token rangeOfString:@"&"].location];
         
-        NSLog(@"oauth_token = %@", oauth_token);
+        NSLog_DEBUG(@"oauth_token = %@", oauth_token);
         
         NSString *oauth_verifier = [retStr substringFromIndex:verifierRange.location + verifierRange.length];
         
-        _oauth_verifier = oauth_verifier;
+        [_oauth_verifier release];
+        _oauth_verifier = nil;
+        _oauth_verifier = [oauth_verifier retain];;
 
         for (id<VEIpadShareFlickrDelegate> observer in _observers)
         {
@@ -638,7 +654,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
         [_requestToken release];
         _requestToken = nil;
         
-        if (!inputData || !response || inputError)
+        if (nil == inputData || nil == response || nil != inputError)
         {
             for (id<VEIpadShareFlickrDelegate> observer in _observers)
             {
@@ -702,7 +718,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
                         name = NSLocalizedString(@"ESSFlickrUnknownUsername", @"");
                     }
 
-                    if (!_authToken)
+                    if (nil == _authToken)
                     {
                         for (id<VEIpadShareFlickrDelegate> observer in _observers)
                         {
@@ -757,7 +773,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
                     tags:(NSString *)tags
              makePrivate:(BOOL)makePrivate
 {
-	if (!url)
+	if (nil == url)
     {
 //        [self.flickrDelegate flickrUploadFinishedWithFlickrVideoURL:NO returnURL:nil returnMessage:@"url is nil"];
         
@@ -769,10 +785,12 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
             }
         }
         
+        NSLog_DEBUG(@"url = %@", url);
+        
         return;
     }
 
-    if (!_authToken)
+    if (nil == _authToken)
     {
         for (id<VEIpadShareFlickrDelegate> observer in _observers)
         {
@@ -781,9 +799,11 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
                 [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_NullInputAuthToken];
             }
         }
+        
+        return;
     }
     
-    if (!_oaconsumer)
+    if (nil == _oaconsumer)
     {
         for (id<VEIpadShareFlickrDelegate> observer in _observers)
         {
@@ -792,9 +812,11 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
                 [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_NullInputOaconsumer];
             }
         }
+        
+        return;
     }
     
-    if (!_uploader)
+    if (nil != _uploader)
     {
         for (id<VEIpadShareFlickrDelegate> observer in _observers)
         {
@@ -803,6 +825,8 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
                 [observer flickrUploadIsFinished:NO withReturnURL:nil withFailType:FlickrUploadFailType_NullInputUploader];
             }
         }
+        
+        return;
     }
     
     AVURLAsset *vid = [[[AVURLAsset alloc] initWithURL:url options:nil] autorelease];
@@ -927,7 +951,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
     
 	if (actualWrittenLength != writeLength)
     {
-        NSLog(@"error writing ending of file");
+        NSLog_DEBUG(@"error writing ending of file");
     }
 		
 	[oStr close];
@@ -983,7 +1007,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
     
     void(^handleCheckFlickrPhotoIDResponse)() = ^(NSData *inputData, NSError *inputError) {
         
-        if (!inputData|| inputError)
+        if (nil == inputData|| nil != inputError)
         {
             for (id<VEIpadShareFlickrDelegate> observer in _observers)
             {
@@ -1099,7 +1123,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-	if (!_resultData)
+	if (nil == _resultData)
     {
         _resultData = [[NSMutableData data]retain];
     }
@@ -1127,7 +1151,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    if (!_resultData)
+    if (nil == _resultData)
     {
         return;
     }

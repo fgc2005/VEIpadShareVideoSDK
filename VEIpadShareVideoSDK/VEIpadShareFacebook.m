@@ -8,6 +8,9 @@
 
 #import "VEIpadShareFacebook.h"
 
+#define NSLog_INFO(xx, ...) NSLog(xx, ##__VA_ARGS__)
+#define NSLog_DEBUG(xx, ...) NSLog(@"%@ %s %d: " xx, [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __func__, __LINE__, ##__VA_ARGS__)
+
 @implementation VEIpadShareFacebook
 
 #define     KEY_TOKEN_FACEBOOK                          @"token_facebook"
@@ -75,7 +78,7 @@
     
     void(^handleCheckFacebookInternetResponse)() = ^(NSData *inputData, NSError *inputError) {
         
-        if (!inputData || inputError)
+        if (nil == inputData || nil != inputError)
         {
             for (id<VEIpadShareFacebookDelegate> observer in _observers)
             {
@@ -114,7 +117,7 @@
 
 - (void)checkFacebookIsStoreTokenValid
 {
-    if (TOKEN_FACEBOOK)
+    if (nil != TOKEN_FACEBOOK)
     {
         NSURL *nameURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/me?access_token=%@", TOKEN_FACEBOOK]];
         NSURLRequest *request = [NSURLRequest requestWithURL:nameURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5.0f];
@@ -123,7 +126,7 @@
             
             BOOL isValid = YES;
             
-            if (inputData)
+            if (nil != inputData)
             {
                 NSString *retStr = [[NSString alloc]initWithData:inputData encoding:NSUTF8StringEncoding];
                 NSRange nameRange = [retStr rangeOfString:@"\"error\":"];
@@ -186,7 +189,7 @@
         
         NSString *name = nil;
         
-        if (inputData)
+        if (nil != inputData)
         {
             NSString *retStr = [[NSString alloc]initWithData:inputData encoding:NSUTF8StringEncoding];
             
@@ -280,7 +283,7 @@
         return;
     }
     
-    if (_uploader)
+    if (nil != _uploader)
     {
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {

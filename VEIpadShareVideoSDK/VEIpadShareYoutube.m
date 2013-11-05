@@ -23,6 +23,9 @@
 #define     KEY_TOKEN_YOUTUBE                          @"token_youtube"
 #define     TOKEN_YOUTUBE                             [[NSUserDefaults standardUserDefaults] objectForKey:KEY_TOKEN_YOUTUBE]
 
+#define NSLog_INFO(xx, ...) NSLog(xx, ##__VA_ARGS__)
+#define NSLog_DEBUG(xx, ...) NSLog(@"%@ %s %d: " xx, [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __func__, __LINE__, ##__VA_ARGS__)
+
 CFStringRef CFXMLCreateStringByEscapingEntities(CFAllocatorRef allocator, CFStringRef string, CFDictionaryRef entitiesDictionary) {
 	CFMutableStringRef newString = CFStringCreateMutable(allocator, 0); // unbounded mutable string
 	CFMutableCharacterSetRef startChars = CFCharacterSetCreateMutable(allocator);
@@ -301,7 +304,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
     
     void (^handlerCheckYoutubeInternetResponse)() = ^(NSData *inputData, NSError *inputError) {
  
-        if (!inputData || inputError)
+        if (nil == inputData || nil != inputError)
         {
             isCorrect = NO;
         }
@@ -338,7 +341,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
 
 - (void)checkYoutubeIsStoreTokenValid
 {
-    if (TOKEN_YOUTUBE)
+    if (nil != TOKEN_YOUTUBE)
     {
         //check if valid
         [self _nameForLoggedInUser]; //just used to check if the key we got is still valid
@@ -470,7 +473,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
 
 - (void)authorizeYoutubeWithUsername:(NSString *)username password:(NSString *)password
 {
-	if (!username || !password || !_developerKey)
+	if (0 == [username length] || 0 == [password length] || nil == _developerKey)
     {
         return;
     }
@@ -493,13 +496,13 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
         
         NSString *authToken = nil;
         
-        if (inputData)
+        if (nil != inputData)
         {
             authToken = [[[NSString alloc]initWithData:inputData encoding:NSUTF8StringEncoding]autorelease];
         }
         
         //iOS
-        if (!authToken)
+        if (nil == authToken)
         {
             //                [_youTubeDelegate loginResult:NO infomation:err.localizedDescription];
             
@@ -594,17 +597,17 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
                        keywords:(NSString *)keywords
                        category:(NSString *)category
 {
-	if (!_developerKey || !TOKEN_YOUTUBE || !url || !title || _uploader)
+	if (nil == _developerKey || nil == TOKEN_YOUTUBE || nil == url || 0 == [title length] || nil != _uploader)
     {
         return;
     }
 
-	if (!description)
+	if (0 == [description length])
     {
         description = @"";
     }
 		
-	if (!keywords)
+	if (0 == [keywords length])
     {
         keywords = @"";
     }
@@ -656,7 +659,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
     
 	if (actualWrittenLength != writeLength)
     {
-        NSLog(@"error writing beginning");
+        NSLog_DEBUG(@"error writing beginning");
     }
 
 	const size_t bufferSize = 65536;
@@ -717,7 +720,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
 
 - (void)_nameForLoggedInUser
 {
-	if (!_developerKey || !TOKEN_YOUTUBE)
+	if (nil == _developerKey || nil == TOKEN_YOUTUBE)
     {
         for (id<VEIpadShareYoutubeDelegate> observer in _observers)
         {
@@ -784,22 +787,22 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
         
         NSString *nameStr = nil;
         
-        if (retStr)
+        if ([retStr length] > 0)
         {
             nameStr = [retStr substringFromIndex:nameRange.location+nameRange.length];
         }
         
-        if (nameStr)
+        if ([nameStr length] > 0)
         {
             nameStr = [nameStr substringFromIndex:[nameStr rangeOfString:@">"].location+1];
         }
         
-        if (nameStr)
+        if ([nameStr length] > 0)
         {
             nameStr = [nameStr substringToIndex:[nameStr rangeOfString:@"</name"].location];
         }
         
-        if (nameStr && [nameStr length] > 0)
+        if ([nameStr length] > 0)
         {
             isValid = YES;
         }
@@ -875,7 +878,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
 
 - (void)_videoUploadWithID:(NSString *)videoID isFinishedWithError:(BOOL *)uploadFailed
 {
-	if (!_forCheckVideoID)
+	if (nil == _forCheckVideoID)
     {
         _checkMessage = @"Check does not pass";
         
@@ -892,7 +895,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
         return;
     }
     
-	if (uploadFailed)
+	if (nil != uploadFailed)
     {
         *uploadFailed = NO;
     }
@@ -912,7 +915,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
 
         BOOL fail = NO;
         
-        if (!inputData)
+        if (nil == inputData)
         {
             fail = YES;
             
@@ -1014,7 +1017,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-	if (!_receivedData)
+	if (nil == _receivedData)
     {
         _receivedData = [[NSMutableData data]retain];
     }
@@ -1035,7 +1038,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    if (!_receivedData)
+    if (nil == _receivedData)
     {
         return;
     }
@@ -1087,6 +1090,8 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
 		
         NSLog(@"vidID = %@", vidID);
         
+        [_forCheckVideoID release];
+        _forCheckVideoID = nil;
         _forCheckVideoID = [vidID retain];
         
 		[self _checkProcessingOnYouTubeWithVideoID:vidID];
