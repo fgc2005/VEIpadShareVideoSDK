@@ -45,7 +45,7 @@ SKPSMTPMessageDelegate
     [super dealloc];
 }
 
-- (id)initWithDelegates:(NSMutableArray *)array
+- (id)initWithDelegates:(NSMutableArray *)array     
 {
     self = [super init];
     
