@@ -416,31 +416,35 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
             checkIsTokenValid = isValid;
         }
         
+        //  第二次检验token，从本地存储获取检验
         if (nil == forCheckToken)
         {
             for (id<VEIpadShareFlickrDelegate> observer in _observers)
             {
                 if (observer && [observer respondsToSelector:@selector(flickrIsStoreTokenValid:)])
                 {
+                    [_authToken release];
+                    _authToken = nil;
+                    _authToken = [authToken retain];
                     [observer flickrIsStoreTokenValid:checkIsTokenValid];
                 }
             }
         }
         else
         {
+            //  第一次获取，直接传入token检验
             for (id<VEIpadShareFlickrDelegate> observer in _observers)
             {
                 if (observer && [observer respondsToSelector:@selector(flickrIsAccessTokenSuccess:withUsername:withFailType:)])
                 {
                     if (checkIsTokenValid)
                     {
-                        [_authToken release];
-                        _authToken = nil;
-                        _authToken = [authToken retain];
+                       
                         [observer flickrIsAccessTokenSuccess:YES withUsername:username withFailType:FlickrAccessTokenFailType_NoFail];
                     }
                     else
                     {
+                        
                         [observer flickrIsAccessTokenSuccess:NO withUsername:nil withFailType:FlickrAccessTokenFailType_NullToken];
                     }
                 }
