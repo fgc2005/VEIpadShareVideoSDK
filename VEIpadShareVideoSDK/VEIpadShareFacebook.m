@@ -526,6 +526,7 @@
             [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_NetworkError];
         }
     }
+    NSLog(@"facebook upload error: %@",error.localizedDescription);
 }
 
 @end
