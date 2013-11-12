@@ -598,6 +598,7 @@
 		42AB811D1807C1F9007F3876 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				"CODE_SIGN_RESOURCE_RULES_PATH[sdk=*]" = "";
 				DSTROOT = /tmp/VEIpadShareVideoSDK.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -612,6 +613,7 @@
 		42AB811E1807C1F9007F3876 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				DSTROOT = /tmp/VEIpadShareVideoSDK.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VEIpadShareVideoSDK/VEIpadShareVideoSDK-Prefix.pch";

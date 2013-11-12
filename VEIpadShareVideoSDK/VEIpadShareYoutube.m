@@ -735,6 +735,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
 
     NSString *token = TOKEN_YOUTUBE;
 	NSString *justAuth = [token substringFromIndex:[token rangeOfString:@"Auth="].location + 5];
+    
 	justAuth = [justAuth stringByReplacingOccurrencesOfString:@"\n" withString:@""];
 	
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://gdata.youtube.com/feeds/api/users/default?v=2&key=%@&format=xml", _developerKey]];
@@ -746,15 +747,27 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
     
     void (^handlerCheckYoutubeIsStoreTokenValidResponse)() = ^(NSData *inputData, NSError *inputError) {
         
-        if (inputError)
+        if (nil == inputData || nil != inputError)
         {
-            isValid = NO;
+            for (id<VEIpadShareYoutubeDelegate> observer in _observers)
+            {
+                if (observer && [observer respondsToSelector:@selector(youtubeNetworkIsCorrect:)])
+                {
+                    [observer youtubeNetworkIsCorrect:NO];
+                }
+            }
+            return ;
         }
         
-        if (nil == inputData)
-        {
-            isValid = NO;
-        }
+//        if (inputError)
+//        {
+//            isValid = NO;
+//        }
+//        
+//        if (nil == inputData)
+//        {
+//            isValid = NO;
+//        }
         
         NSString *retStr = [[[NSString alloc]initWithData:inputData encoding:NSUTF8StringEncoding]autorelease];
         
@@ -769,17 +782,17 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
         //  changes by Jean-Pierre Rizzi
         NSString *username = nil;
         
-        if (retStr)
+        if ([retStr  length] > 0)
         {
             username = [retStr substringFromIndex:userNameRange.location+userNameRange.length];
         }
 
-        if (username)
+        if ([username length] > 0)
         {
             username = [username substringFromIndex:[username rangeOfString:@">"].location+1];
         }
         
-        if (username)
+        if ([username length] > 0)
         {
             username = [username substringToIndex:[username rangeOfString:@"</yt:username"].location];
         }
