@@ -173,6 +173,7 @@
 		42AB80F01807C1F8007F3876 = {
 			isa = PBXGroup;
 			children = (
+				42AB81281807C29A007F3876 /* flickr */,
 				42AB80FE1807C1F9007F3876 /* VEIpadShareVideoSDK */,
 				42AB81661808101F007F3876 /* VEIpadShareVideoSDKTests_1 */,
 				42AB80FB1807C1F8007F3876 /* Frameworks */,
@@ -212,7 +213,6 @@
 				429EEDA3180EE6DD004954B5 /* VEIpadShareEmail.m */,
 				42ABBA6D183326410048B2B5 /* VEIpadShareVideoSDK.h */,
 				429EEDA5180EE724004954B5 /* email */,
-				42AB81281807C29A007F3876 /* flickr */,
 				42AB80FF1807C1F9007F3876 /* Supporting Files */,
 			);
 			path = VEIpadShareVideoSDK;
@@ -231,7 +231,8 @@
 			children = (
 				42AB81291807C29A007F3876 /* OAuth */,
 			);
-			path = flickr;
+			name = flickr;
+			path = VEIpadShareVideoSDK/flickr;
 			sourceTree = "<group>";
 		};
 		42AB81291807C29A007F3876 /* OAuth */ = {
@@ -445,6 +446,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: CHEN CHENG (G4QGM9JRYQ)";
+				CONFIGURATION_BUILD_DIR = ../VE_iPhone/libs;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -485,6 +487,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: CHEN CHENG (G4QGM9JRYQ)";
+				CONFIGURATION_BUILD_DIR = ../VE_iPhone/libs;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -504,6 +507,7 @@
 		42AB811D1807C1F9007F3876 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				"CODE_SIGN_RESOURCE_RULES_PATH[sdk=*]" = "";
 				CONFIGURATION_BUILD_DIR = ../VE_iPhone/libs_share;
 				DSTROOT = /tmp/VEIpadShareVideoSDK.dst;
@@ -525,6 +529,7 @@
 		42AB811E1807C1F9007F3876 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CONFIGURATION_BUILD_DIR = ../VE_iPhone/libs_share;
 				DSTROOT = /tmp/VEIpadShareVideoSDK.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

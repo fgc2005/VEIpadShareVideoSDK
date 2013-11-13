@@ -9,3 +9,4 @@
 #import "VEIpadShareFlickr.h"
 #import "VEIpadShareFacebook.h"
 #import "VEIpadShareYoutube.h"
+#import "VEIpadShareEmail.h"
