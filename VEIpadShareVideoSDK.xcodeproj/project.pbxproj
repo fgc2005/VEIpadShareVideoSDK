@@ -41,6 +41,12 @@
 		42AB817A18083E0C007F3876 /* VEIpadShareFlickr.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB817518083E0C007F3876 /* VEIpadShareFlickr.m */; };
 		42AB817B18083E0C007F3876 /* VEIpadShareFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB817718083E0C007F3876 /* VEIpadShareFacebook.m */; };
 		42AB817C18083E0C007F3876 /* VEIpadShareYoutube.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB817918083E0C007F3876 /* VEIpadShareYoutube.m */; };
+		EC69B71818322F7900FD6F19 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC69B71718322F7900FD6F19 /* CFNetwork.framework */; };
+		EC69B71A18322F8400FD6F19 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC69B71918322F8400FD6F19 /* MobileCoreServices.framework */; };
+		EC69B71C18322F8D00FD6F19 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC69B71B18322F8D00FD6F19 /* SystemConfiguration.framework */; };
+		EC69B71E18322F9600FD6F19 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC69B71D18322F9600FD6F19 /* UIKit.framework */; };
+		EC69B72018322FA700FD6F19 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC69B71F18322FA700FD6F19 /* CoreGraphics.framework */; };
+		EC69B72218322FAF00FD6F19 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC69B72118322FAF00FD6F19 /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +141,12 @@
 		42AB817718083E0C007F3876 /* VEIpadShareFacebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VEIpadShareFacebook.m; sourceTree = "<group>"; };
 		42AB817818083E0C007F3876 /* VEIpadShareYoutube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VEIpadShareYoutube.h; sourceTree = "<group>"; };
 		42AB817918083E0C007F3876 /* VEIpadShareYoutube.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VEIpadShareYoutube.m; sourceTree = "<group>"; };
+		EC69B71718322F7900FD6F19 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		EC69B71918322F8400FD6F19 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		EC69B71B18322F8D00FD6F19 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		EC69B71D18322F9600FD6F19 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		EC69B71F18322FA700FD6F19 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EC69B72118322FAF00FD6F19 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +154,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC69B72218322FAF00FD6F19 /* CoreData.framework in Frameworks */,
+				EC69B72018322FA700FD6F19 /* CoreGraphics.framework in Frameworks */,
 				42AB80FD1807C1F9007F3876 /* Foundation.framework in Frameworks */,
+				EC69B71E18322F9600FD6F19 /* UIKit.framework in Frameworks */,
+				EC69B71C18322F8D00FD6F19 /* SystemConfiguration.framework in Frameworks */,
+				EC69B71A18322F8400FD6F19 /* MobileCoreServices.framework in Frameworks */,
+				EC69B71818322F7900FD6F19 /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +235,12 @@
 		42AB80FB1807C1F8007F3876 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EC69B72118322FAF00FD6F19 /* CoreData.framework */,
+				EC69B71F18322FA700FD6F19 /* CoreGraphics.framework */,
+				EC69B71D18322F9600FD6F19 /* UIKit.framework */,
+				EC69B71B18322F8D00FD6F19 /* SystemConfiguration.framework */,
+				EC69B71918322F8400FD6F19 /* MobileCoreServices.framework */,
+				EC69B71718322F7900FD6F19 /* CFNetwork.framework */,
 				42AB80FC1807C1F8007F3876 /* Foundation.framework */,
 				42AB810A1807C1F9007F3876 /* XCTest.framework */,
 				42AB810D1807C1F9007F3876 /* UIKit.framework */,
@@ -600,12 +624,14 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				"CODE_SIGN_RESOURCE_RULES_PATH[sdk=*]" = "";
+				CONFIGURATION_BUILD_DIR = ../VE_iPhone/libs/share;
 				DSTROOT = /tmp/VEIpadShareVideoSDK.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VEIpadShareVideoSDK/VEIpadShareVideoSDK-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "2683A907-8B52-4D2F-B177-1E3365AD1E6D";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -614,12 +640,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				CONFIGURATION_BUILD_DIR = ../VE_iPhone/libs/share;
 				DSTROOT = /tmp/VEIpadShareVideoSDK.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VEIpadShareVideoSDK/VEIpadShareVideoSDK-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "2683A907-8B52-4D2F-B177-1E3365AD1E6D";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

@@ -170,5 +170,6 @@ FlickrUploadFailType;
              description:(NSString *)description
                     tags:(NSString *)tags
              makePrivate:(BOOL)makePrivate;
-
+//取消上传操作
+- (void)cancelUploader ;
 @end

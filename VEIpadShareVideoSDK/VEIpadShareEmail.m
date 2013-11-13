@@ -111,9 +111,10 @@ SKPSMTPMessageDelegate
     [_parts_to_send addObject:plain_text_part];
     
     _smtpMessage.parts = _parts_to_send;
-    
+ 
     if ([self checkData])
     {
+       
         for (id<VEIpadShareEmailDelegate> observer in _observers)
         {
             if (observer && [observer respondsToSelector:@selector(sendEmailStart)])

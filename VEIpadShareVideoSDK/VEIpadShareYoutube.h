@@ -14,6 +14,7 @@ typedef enum
     YoutubeAuthorizeFailType_TokenNull,
     YoutubeAuthorizeFailType_TokenError,
     YoutubeAuthorizeFailType_Fail,
+    YoutubeAuthorizeFailType_NotNetwork,
 }
 YoutubeAuthorizeFailType;
 
