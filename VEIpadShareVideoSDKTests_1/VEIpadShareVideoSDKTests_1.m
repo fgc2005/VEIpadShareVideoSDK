@@ -34,8 +34,8 @@ VEIpadShareFlickrDelegate
 {
 //    STFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
-    VEIpadShareFlickr *padShareFlickr = [[VEIpadShareFlickr alloc]initWithDelegate:self applicationKey:@"8d481161fd2d99ef633f94b3c55b5309" applicationSecret:@"e85b9240af2898e3"];
-    [padShareFlickr go:NO];
+//    VEIpadShareFlickr *padShareFlickr = [[VEIpadShareFlickr alloc]initWithDelegate:self applicationKey:@"8d481161fd2d99ef633f94b3c55b5309" applicationSecret:@"e85b9240af2898e3"];
+//    [padShareFlickr go:NO];
     CFRunLoopRun();
 }
 
