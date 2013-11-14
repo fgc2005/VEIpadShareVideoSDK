@@ -261,9 +261,9 @@
     {
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
-            if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+            if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage: message:)])
             {
-                [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_UrlNull];
+                [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_UrlNull message:@"facebook upload video url nil."];
             }
         }
         
@@ -274,9 +274,9 @@
     {
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
-            if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+            if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:message:)])
             {
-                [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_FileNotFound];
+                [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_FileNotFound message:@"facebook upload video file not exit."];
             }
         }
         
@@ -287,9 +287,9 @@
     {
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
-            if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+            if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:message:)])
             {
-                [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_Uploading];
+                [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_Uploading message:@"upload fail"];
             }
         }
         
@@ -300,9 +300,9 @@
     {
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
-            if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+            if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:message:)])
             {
-                [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_TitleNull];
+                [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_TitleNull message:@"facebook upload title nil ."];
             }
         }
         
@@ -313,9 +313,9 @@
     {
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
-            if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+            if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:message:)])
             {
-                [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_DescriptionNull];
+                [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_DescriptionNull message:@"facebook upload description nil."];
             }
         }
         
@@ -350,9 +350,9 @@
     {
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
-            if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+            if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:message:)])
             {
-                [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_DescriptionNull];
+                [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_DescriptionNull message:@"facebook upload fail"];
             }
         }
         
@@ -377,9 +377,9 @@
         {
             for (id<VEIpadShareFacebookDelegate> observer in _observers)
             {
-                if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+                if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:message:)])
                 {
-                    [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_ErrorReading];
+                    [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_ErrorReading message:@"facebook upload fail"];
                 }
             }
             
@@ -403,9 +403,9 @@
     {
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
-            if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+            if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage: message:)])
             {
-                [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_ErrorWriting];
+                [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_ErrorWriting message:@"facebook upload fail"];
             }
         }
         
@@ -481,9 +481,9 @@
 	{
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
-            if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+            if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:message:)])
             {
-                [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_ErrorWriting];
+                [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_ErrorWriting message:@"facebook upload object id nil."];
             }
         }
         
@@ -496,9 +496,9 @@
 
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
-            if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+            if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:message:)])
             {
-                [observer facebookUploadFinish:YES returnURL:url returnMessage:FacebookUploadFailType_NoFail];
+                [observer facebookUploadFinish:YES returnURL:url returnMessage:FacebookUploadFailType_NoFail message:@"facebook upload fail"];
             }
         }
 	}
@@ -521,9 +521,9 @@
 {
     for (id<VEIpadShareFacebookDelegate> observer in _observers)
     {
-        if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage:)])
+        if (observer && [observer respondsToSelector:@selector(facebookUploadFinish:returnURL:returnMessage: message:)])
         {
-            [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_NetworkError];
+            [observer facebookUploadFinish:NO returnURL:nil returnMessage:FacebookUploadFailType_NetworkError message:error.localizedDescription];
         }
     }
     NSLog(@"facebook upload error: %@",error.localizedDescription);

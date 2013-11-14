@@ -501,7 +501,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
       
         for (id<VEIpadShareYoutubeDelegate> observer in _observers)
         {
-            if (observer && [observer respondsToSelector:@selector(youtubeNetworkIsCorrect:)])
+            if (observer && [observer respondsToSelector:@selector(youtubeDidAuthorizeIsSuccess:withFailType:)])
             {
                  [observer youtubeDidAuthorizeIsSuccess:NO withFailType:YoutubeAuthorizeFailType_NotNetwork];
             }

@@ -230,7 +230,7 @@ AFJSONRequestOperationDelegate
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             
             if([error code] == -1011){
-                [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"iTumblrIsUploadAuthorizeSuccess"];
+                [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"tumblrIsUploadAuthorizeSuccess"];
                 
 //                [_tumblrDelegate tumblrUploadVideoResult:NO message:@"not Authorize!"];
                 

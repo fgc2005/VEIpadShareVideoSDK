@@ -25,7 +25,7 @@ SendEmailFailType;
 
 @optional
 - (void)sendEmailStart;
-- (void)sendEmailIsSuccess:(BOOL)isSuccess withFailType:(SendEmailFailType)type;
+- (void)sendEmailIsSuccess:(BOOL)isSuccess withFailType:(SendEmailFailType)type errorMeessage:(NSString *)message;
 - (void)sendEmailProgress:(float)progress;
 
 @end

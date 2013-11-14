@@ -139,9 +139,9 @@ SKPSMTPMessageDelegate
         
         for (id<VEIpadShareEmailDelegate> observer in _observers)
         {
-            if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:)])
+            if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:errorMeessage:)])
             {
-                [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_ToEmailNull];
+                [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_ToEmailNull errorMeessage:@"email send  to email address null"];
             }
         }
         
@@ -153,9 +153,9 @@ SKPSMTPMessageDelegate
         
         for (id<VEIpadShareEmailDelegate> observer in _observers)
         {
-            if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:)])
+            if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:errorMeessage:)])
             {
-                [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_FromEmailNull];
+                [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_FromEmailNull errorMeessage:@"email send email null"];
             }
         }
         
@@ -167,9 +167,9 @@ SKPSMTPMessageDelegate
         
         for (id<VEIpadShareEmailDelegate> observer in _observers)
         {
-            if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:)])
+            if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:errorMeessage:)])
             {
-                [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_FromPasswrodNull];
+                [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_FromPasswrodNull errorMeessage:@"email send email password null"];
             }
         }
         
@@ -181,9 +181,9 @@ SKPSMTPMessageDelegate
         
         for (id<VEIpadShareEmailDelegate> observer in _observers)
         {
-            if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:)])
+            if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:errorMeessage:)])
             {
-                [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_RelayHostNull];
+                [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_RelayHostNull errorMeessage:@"email send relay host null"];
             }
         }
         
@@ -195,9 +195,9 @@ SKPSMTPMessageDelegate
         
         for (id<VEIpadShareEmailDelegate> observer in _observers)
         {
-            if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:)])
+            if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:errorMeessage:)])
             {
-                [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_EmailSubjectNull];
+                [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_EmailSubjectNull errorMeessage:@"email send subject null "];
             }
         }
         
@@ -209,9 +209,9 @@ SKPSMTPMessageDelegate
         
         for (id<VEIpadShareEmailDelegate> observer in _observers)
         {
-            if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:)])
+            if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:errorMeessage:)])
             {
-                [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_EmialVideoNull];
+                [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_EmialVideoNull errorMeessage:@"email send video url nil"];
             }
         }
         
@@ -227,9 +227,9 @@ SKPSMTPMessageDelegate
 {
     for (id<VEIpadShareEmailDelegate> observer in _observers)
     {
-        if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:)])
+        if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:errorMeessage:)])
         {
-            [observer sendEmailIsSuccess:YES withFailType:SendEmailFailType_NoFail];
+            [observer sendEmailIsSuccess:YES withFailType:SendEmailFailType_NoFail errorMeessage:nil];
         }
     }
 }
@@ -238,9 +238,9 @@ SKPSMTPMessageDelegate
 {
     for (id<VEIpadShareEmailDelegate> observer in _observers)
     {
-        if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:)])
+        if (observer && [observer respondsToSelector:@selector(sendEmailIsSuccess:withFailType:errorMeessage:)])
         {
-            [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_Fail];
+            [observer sendEmailIsSuccess:NO withFailType:SendEmailFailType_Fail errorMeessage:error.localizedDescription];
         }
     }
 }

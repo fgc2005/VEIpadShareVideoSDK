@@ -40,7 +40,7 @@ FacebookUploadFailType;
 - (void)facebookIsStoreTokenValid:(BOOL)isValid;
 - (void)facebookAuthenticateIsSuccess:(BOOL)isSuccess withFailType:(FacebookAuthenticateFailType)type;
 
-- (void)facebookUploadFinish:(BOOL)isFinish returnURL:(NSURL *)returnURL returnMessage:(FacebookUploadFailType)type;
+- (void)facebookUploadFinish:(BOOL)isFinish returnURL:(NSURL *)returnURL returnMessage:(FacebookUploadFailType)type message:(NSString*)errorMessage;
 - (void)facebookUploadUpdatedWithBytes:(long)totalBytesWritten ofTotalBytes:(long)totalBytesExpectedToWrite;
 
 @end
