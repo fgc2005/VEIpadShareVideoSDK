@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42256ABD18336F8300FEC620 /* VEIpadShareTumblr.m in Sources */ = {isa = PBXBuildFile; fileRef = 42256ABC18336F8200FEC620 /* VEIpadShareTumblr.m */; };
+		42256ABE183373CD00FEC620 /* VEIpadShareTumblr.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42256ABB18336F8200FEC620 /* VEIpadShareTumblr.h */; };
+		42256B6018337A5A00FEC620 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42256B5F18337A5A00FEC620 /* libPods.a */; };
 		429EEDA4180EE6DD004954B5 /* VEIpadShareEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 429EEDA3180EE6DD004954B5 /* VEIpadShareEmail.m */; };
 		429EEDAF180EE724004954B5 /* EmailBase64Transcoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 429EEDA8180EE724004954B5 /* EmailBase64Transcoder.m */; };
 		429EEDB0180EE724004954B5 /* EmailUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 429EEDAA180EE724004954B5 /* EmailUtil.m */; };
@@ -57,6 +60,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				42256ABE183373CD00FEC620 /* VEIpadShareTumblr.h in CopyFiles */,
 				42ABBA7618332ABF0048B2B5 /* VEIpadShareYoutube.h in CopyFiles */,
 				42ABBA7718332ABF0048B2B5 /* VEIpadShareEmail.h in CopyFiles */,
 				42ABBA7818332ABF0048B2B5 /* VEIpadShareVideoSDK.h in CopyFiles */,
@@ -68,6 +72,28 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		42256ABB18336F8200FEC620 /* VEIpadShareTumblr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VEIpadShareTumblr.h; sourceTree = "<group>"; };
+		42256ABC18336F8200FEC620 /* VEIpadShareTumblr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VEIpadShareTumblr.m; sourceTree = "<group>"; };
+		42256B4C18337A5A00FEC620 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
+		42256B4D18337A5A00FEC620 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		42256B4E18337A5A00FEC620 /* AFImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageRequestOperation.h; sourceTree = "<group>"; };
+		42256B4F18337A5A00FEC620 /* AFIncrementalStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFIncrementalStore.h; sourceTree = "<group>"; };
+		42256B5018337A5A00FEC620 /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRequestOperation.h; sourceTree = "<group>"; };
+		42256B5118337A5A00FEC620 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		42256B5218337A5A00FEC620 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		42256B5318337A5A00FEC620 /* AFOAuth1Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFOAuth1Client.h; sourceTree = "<group>"; };
+		42256B5418337A5A00FEC620 /* AFPropertyListRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFPropertyListRequestOperation.h; sourceTree = "<group>"; };
+		42256B5518337A5A00FEC620 /* AFRESTClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFRESTClient.h; sourceTree = "<group>"; };
+		42256B5618337A5A00FEC620 /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		42256B5718337A5A00FEC620 /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRequestOperation.h; sourceTree = "<group>"; };
+		42256B5818337A5A00FEC620 /* NSString+InflectorKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+InflectorKit.h"; sourceTree = "<group>"; };
+		42256B5918337A5A00FEC620 /* NSValueTransformer+TransformerKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValueTransformer+TransformerKit.h"; sourceTree = "<group>"; };
+		42256B5A18337A5A00FEC620 /* TKImageTransformers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKImageTransformers.h; sourceTree = "<group>"; };
+		42256B5B18337A5A00FEC620 /* TKStringTransformers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKStringTransformers.h; sourceTree = "<group>"; };
+		42256B5C18337A5A00FEC620 /* TransformerKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformerKit.h; sourceTree = "<group>"; };
+		42256B5D18337A5A00FEC620 /* TTTStringInflector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTStringInflector.h; sourceTree = "<group>"; };
+		42256B5E18337A5A00FEC620 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
+		42256B5F18337A5A00FEC620 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPods.a; sourceTree = "<group>"; };
 		429EEDA2180EE6DD004954B5 /* VEIpadShareEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VEIpadShareEmail.h; sourceTree = "<group>"; };
 		429EEDA3180EE6DD004954B5 /* VEIpadShareEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VEIpadShareEmail.m; sourceTree = "<group>"; };
 		429EEDA7180EE724004954B5 /* EmailBase64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailBase64Transcoder.h; sourceTree = "<group>"; };
@@ -131,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42AB80FD1807C1F9007F3876 /* Foundation.framework in Frameworks */,
+				42256B6018337A5A00FEC620 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +174,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42256B4A18337A5A00FEC620 /* pods */ = {
+			isa = PBXGroup;
+			children = (
+				42256B4B18337A5A00FEC620 /* include */,
+				42256B5F18337A5A00FEC620 /* libPods.a */,
+			);
+			path = pods;
+			sourceTree = "<group>";
+		};
+		42256B4B18337A5A00FEC620 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				42256B4C18337A5A00FEC620 /* AFHTTPClient.h */,
+				42256B4D18337A5A00FEC620 /* AFHTTPRequestOperation.h */,
+				42256B4E18337A5A00FEC620 /* AFImageRequestOperation.h */,
+				42256B4F18337A5A00FEC620 /* AFIncrementalStore.h */,
+				42256B5018337A5A00FEC620 /* AFJSONRequestOperation.h */,
+				42256B5118337A5A00FEC620 /* AFNetworkActivityIndicatorManager.h */,
+				42256B5218337A5A00FEC620 /* AFNetworking.h */,
+				42256B5318337A5A00FEC620 /* AFOAuth1Client.h */,
+				42256B5418337A5A00FEC620 /* AFPropertyListRequestOperation.h */,
+				42256B5518337A5A00FEC620 /* AFRESTClient.h */,
+				42256B5618337A5A00FEC620 /* AFURLConnectionOperation.h */,
+				42256B5718337A5A00FEC620 /* AFXMLRequestOperation.h */,
+				42256B5818337A5A00FEC620 /* NSString+InflectorKit.h */,
+				42256B5918337A5A00FEC620 /* NSValueTransformer+TransformerKit.h */,
+				42256B5A18337A5A00FEC620 /* TKImageTransformers.h */,
+				42256B5B18337A5A00FEC620 /* TKStringTransformers.h */,
+				42256B5C18337A5A00FEC620 /* TransformerKit.h */,
+				42256B5D18337A5A00FEC620 /* TTTStringInflector.h */,
+				42256B5E18337A5A00FEC620 /* UIImageView+AFNetworking.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		429EEDA5180EE724004954B5 /* email */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,7 +235,6 @@
 		42AB80F01807C1F8007F3876 = {
 			isa = PBXGroup;
 			children = (
-				42AB81281807C29A007F3876 /* flickr */,
 				42AB80FE1807C1F9007F3876 /* VEIpadShareVideoSDK */,
 				42AB81661808101F007F3876 /* VEIpadShareVideoSDKTests_1 */,
 				42AB80FB1807C1F8007F3876 /* Frameworks */,
@@ -203,6 +264,7 @@
 		42AB80FE1807C1F9007F3876 /* VEIpadShareVideoSDK */ = {
 			isa = PBXGroup;
 			children = (
+				42256B4A18337A5A00FEC620 /* pods */,
 				42AB817418083E0C007F3876 /* VEIpadShareFlickr.h */,
 				42AB817518083E0C007F3876 /* VEIpadShareFlickr.m */,
 				42AB817618083E0C007F3876 /* VEIpadShareFacebook.h */,
@@ -211,7 +273,10 @@
 				42AB817918083E0C007F3876 /* VEIpadShareYoutube.m */,
 				429EEDA2180EE6DD004954B5 /* VEIpadShareEmail.h */,
 				429EEDA3180EE6DD004954B5 /* VEIpadShareEmail.m */,
+				42256ABB18336F8200FEC620 /* VEIpadShareTumblr.h */,
+				42256ABC18336F8200FEC620 /* VEIpadShareTumblr.m */,
 				42ABBA6D183326410048B2B5 /* VEIpadShareVideoSDK.h */,
+				42AB81281807C29A007F3876 /* flickr */,
 				429EEDA5180EE724004954B5 /* email */,
 				42AB80FF1807C1F9007F3876 /* Supporting Files */,
 			);
@@ -231,8 +296,7 @@
 			children = (
 				42AB81291807C29A007F3876 /* OAuth */,
 			);
-			name = flickr;
-			path = VEIpadShareVideoSDK/flickr;
+			path = flickr;
 			sourceTree = "<group>";
 		};
 		42AB81291807C29A007F3876 /* OAuth */ = {
@@ -376,6 +440,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42AB814F1807C29A007F3876 /* OAMutableURLRequest.m in Sources */,
+				42256ABD18336F8300FEC620 /* VEIpadShareTumblr.m in Sources */,
 				42AB814A1807C29A007F3876 /* Base64Transcoder.c in Sources */,
 				42AB81501807C29A007F3876 /* OAPlaintextSignatureProvider.m in Sources */,
 				42AB817A18083E0C007F3876 /* VEIpadShareFlickr.m in Sources */,
@@ -514,6 +579,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VEIpadShareVideoSDK/VEIpadShareVideoSDK-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/cc/gitVE/VEIpadShareVideoSDK/VEIpadShareVideoSDK/pods,
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = /usr/local/include;
@@ -535,6 +604,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VEIpadShareVideoSDK/VEIpadShareVideoSDK-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/cc/gitVE/VEIpadShareVideoSDK/VEIpadShareVideoSDK/pods,
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = /usr/local/include;
 				PRODUCT_NAME = "$(TARGET_NAME)";
