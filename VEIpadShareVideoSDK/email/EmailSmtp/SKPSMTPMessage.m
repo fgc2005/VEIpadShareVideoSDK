@@ -178,6 +178,7 @@ NSString *kSKPSMTPPartContentTransferEncodingKey = @"kSKPSMTPPartContentTransfer
     NSAssert(toEmail, @"send requires toEmail");
     NSAssert(parts, @"send requires parts");
     
+   
     if (![relayPorts count])
     {
         [delegate messageFailed:self 

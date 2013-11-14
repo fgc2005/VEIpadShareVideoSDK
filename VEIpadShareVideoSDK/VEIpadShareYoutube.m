@@ -496,6 +496,19 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
         
         NSString *authToken = nil;
         
+        if (nil == inputData || nil != inputError)
+        {
+      
+        for (id<VEIpadShareYoutubeDelegate> observer in _observers)
+        {
+            if (observer && [observer respondsToSelector:@selector(youtubeNetworkIsCorrect:)])
+            {
+                 [observer youtubeDidAuthorizeIsSuccess:NO withFailType:YoutubeAuthorizeFailType_NotNetwork];
+            }
+        }
+            return ;
+        }
+        
         if (nil != inputData)
         {
             authToken = [[[NSString alloc]initWithData:inputData encoding:NSUTF8StringEncoding]autorelease];
@@ -570,6 +583,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
         {
             if (observer && [observer respondsToSelector:@selector(youtubeDidAuthorizeIsSuccess:withFailType:)])
             {
+                NSLog(@"youtube ....login success....");
                 [observer youtubeDidAuthorizeIsSuccess:YES withFailType:YoutubeAuthorizeFailType_NoFail];
             }
         }
