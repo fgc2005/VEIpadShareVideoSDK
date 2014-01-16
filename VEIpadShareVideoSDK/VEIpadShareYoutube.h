@@ -52,6 +52,7 @@ YoutubeUploadFailType;
 @optional
 - (void)youtubeNetworkIsCorrect:(BOOL)isCorrect;
 - (void)youtubeIsStoreTokenValid:(BOOL)isValid;
+- (void)youtubeLoginSuccessReturen:(NSString *)result;
 - (void)youtubeDidGetCategor:(NSDictionary *)categor;
 - (void)youtubeDidAuthorizeIsSuccess:(BOOL)isSuccess withFailType:(YoutubeAuthorizeFailType)type;
 

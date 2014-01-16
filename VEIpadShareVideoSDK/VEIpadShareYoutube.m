@@ -785,6 +785,7 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
         
         NSString *retStr = [[[NSString alloc]initWithData:inputData encoding:NSUTF8StringEncoding]autorelease];
         
+   
         NSRange userNameRange = [retStr rangeOfString:@"<yt:username "];
         NSRange nameRange = [retStr rangeOfString:@"<name"];
         
@@ -839,6 +840,11 @@ CFStringRef CFXMLCreateStringByUnescapingEntities(CFAllocatorRef allocator, CFSt
             if (observer && [observer respondsToSelector:@selector(youtubeIsStoreTokenValid:)])
             {
                 [observer youtubeIsStoreTokenValid:isValid];
+            }
+            
+            if (observer && [observer respondsToSelector:@selector(youtubeLoginSuccessReturen:)])
+            {
+                [observer youtubeLoginSuccessReturen:retStr];
             }
         }
     };

@@ -188,10 +188,10 @@
         [loginToken retain];
         
         NSString *name = nil;
-        
+        NSString *retStr = nil;
         if (nil != inputData)
         {
-            NSString *retStr = [[NSString alloc]initWithData:inputData encoding:NSUTF8StringEncoding];
+            retStr = [[NSString alloc]initWithData:inputData encoding:NSUTF8StringEncoding];
             
             NSRange nameRange = [retStr rangeOfString:@"\"name\":\""];
             
@@ -206,7 +206,7 @@
                 name = [name substringToIndex:[name rangeOfString:@"\""].location];
             }
             
-            [retStr release];
+            
         }
         
         [token release];
@@ -224,11 +224,17 @@
                 {
                     [observer facebookAuthenticateIsSuccess:YES withFailType:FacebookAuthenticateFailType_NoFail];
                 }
+                
+                if (observer && [observer respondsToSelector:@selector(facebookAuthenticateSuccessResult:)])
+                {
+                    [observer facebookAuthenticateSuccessResult:retStr];
+                }
+
             }
             
             return;
         }
-
+        [retStr release];
         for (id<VEIpadShareFacebookDelegate> observer in _observers)
         {
             if (observer && [observer respondsToSelector:@selector(facebookAuthenticateIsSuccess:withFailType:)])
@@ -431,6 +437,11 @@
     [_uploader cancel];
     [_uploader release];
     _uploader = nil;
+}
+
+- (void)clearFacebookInformation{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:KEY_TOKEN_FACEBOOK];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:KEY_LOGIN_DATE_FOR_EXPIRATION_FACEBOOK];
 }
 
 #pragma mark - NSURLConnectionDataDelegate

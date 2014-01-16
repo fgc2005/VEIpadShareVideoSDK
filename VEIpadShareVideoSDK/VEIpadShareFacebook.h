@@ -39,7 +39,7 @@ FacebookUploadFailType;
 - (void)facebookNetworkIsCorrect:(BOOL)isCorrect;
 - (void)facebookIsStoreTokenValid:(BOOL)isValid;
 - (void)facebookAuthenticateIsSuccess:(BOOL)isSuccess withFailType:(FacebookAuthenticateFailType)type;
-
+- (void)facebookAuthenticateSuccessResult:(NSString *)userInfomation;
 - (void)facebookUploadFinish:(BOOL)isFinish returnURL:(NSURL *)returnURL returnMessage:(FacebookUploadFailType)type message:(NSString*)errorMessage;
 - (void)facebookUploadUpdatedWithBytes:(long)totalBytesWritten ofTotalBytes:(long)totalBytesExpectedToWrite;
 
@@ -89,5 +89,8 @@ FacebookUploadFailType;
 
 //  取消上传
 - (void)cancelFacebookUploader;
+
+//清除缓存，重新登录
+- (void)clearFacebookInformation;
 
 @end
