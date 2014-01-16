@@ -737,6 +737,15 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
                     else
                     {
                         [self _canUploadVideosKeyInvalidCheck:_authToken withUsername:name];
+                        for (id<VEIpadShareFlickrDelegate> observer in _observers)
+                        {
+                            if (observer && [observer respondsToSelector:@selector(flickrAuthenticateSuccessResult:)])
+                            {
+                                [observer flickrAuthenticateSuccessResult:authTokenStr];
+                            }
+                        }
+                        
+                        
                     }
                 }
             }
@@ -1100,6 +1109,10 @@ CFStringRef CFXMLCreateStringByUnescapingEntitiesFlickr(CFAllocatorRef allocator
     _uploader = nil;
 }
 
+- (void)clearFlickrInformation
+{
+    [OAToken clearUserDefaultsUsingServiceProviderName:@"essflickr" prefix:@"essflickrvideoupload"];
+}
 
 #pragma mark - NSURLConnectionDelegate
 

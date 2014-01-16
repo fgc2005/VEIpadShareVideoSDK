@@ -85,6 +85,16 @@
 	return self;
 }
 
++ (void)clearUserDefaultsUsingServiceProviderName:(NSString *)provider prefix:(NSString *)prefix
+{
+        NSString *keyString = [NSString stringWithFormat:@"OAUTH_%@_%@_KEY", prefix, provider];
+        NSString *secretString = [NSString stringWithFormat:@"OAUTH_%@_%@_SECRET", prefix, provider];
+        
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:keyString];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:secretString];
+ 
+}
+
 - (void)dealloc
 {
 	[key release];

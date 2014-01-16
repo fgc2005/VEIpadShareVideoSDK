@@ -62,7 +62,8 @@ FlickrUploadFailType;
 - (void)flickrDidGetLoginTokenIsSuccess:(BOOL)isSuccess withRequest:(NSURLRequest *)request withFailType:(DidGetLoginTokenFailType)type;
 - (void)flickrAuthenticateIsSuccess:(BOOL)isSuccess withFailType:(FlickrAuthenticateFailType)type;
 - (void)flickrIsAccessTokenSuccess:(BOOL)isSuccess withUsername:(NSString *)username withFailType:(FlickrAccessTokenFailType)type;
-
+//登陆成功，获取flickr网站返回的用户信息
+- (void)flickrAuthenticateSuccessResult:(NSString *)userInfomation;
 - (void)flickrUploadIsFinished:(BOOL)isSuccess withReturnURL:(NSURL *)returnURL withFailType:(FlickrUploadFailType)type;
 - (void)flickrUploadUpdatedWithBytes:(long)totalBytesWritten ofTotalBytes:(long)totalBytesExpectedToWrite;
 
@@ -100,6 +101,7 @@ FlickrUploadFailType;
 
 //  检查token，如果token验证通过，进入登陆状态，否则需要登陆。
 - (void)checkFlickrIsStoreTokenValid;
+
 
 /**
  1 . 2
@@ -172,4 +174,7 @@ FlickrUploadFailType;
              makePrivate:(BOOL)makePrivate;
 //取消上传操作
 - (void)cancelUploader ;
+
+//清除缓存，重新登录
+- (void)clearFlickrInformation;
 @end
